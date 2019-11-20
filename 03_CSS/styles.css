@@ -179,7 +179,7 @@ header h2 {
 #projects li {
     position: relative;
     width: 300px;
-    border: 1px black solid;
+    border: .5px black solid;
 }
 
 /* Flexbox here */
@@ -621,8 +621,8 @@ header h2 {
 } 
 
 #stack {
-    background-color: rgba(255, 255, 255, 0.7);
-    box-shadow: 2px 2px 10px 10px rgba(255, 255, 255, 0.7);
+    background-color: rgba(255, 255, 255, 0.8);
+    border: .5px solid black;
     display: flex;
     flex-wrap: wrap;
     justify-content: center;
@@ -644,8 +644,8 @@ header h2 {
     max-width: 500px;
     padding: 25px;
     margin-bottom: 25px;
-    background-color: rgba(255, 255, 255, 0.7);
-    box-shadow: 2px 2px 10px 10px rgba(255, 255, 255, 0.7);
+    background-color: rgba(255, 255, 255, 0.8);
+    border: .5px solid black;
 }
 
 #contact-portal {
@@ -682,7 +682,7 @@ header h2 {
 #inner-contact-portal h1 {
     color: black;
     font-size: 32px;
-    margin-bottom: 2em;
+    margin-bottom: .15em;
 }
 
 #inner-contact-portal img {
@@ -695,8 +695,13 @@ header h2 {
     margin-top: 5%;
 }
 
+#inner-contact-portal span {
+    color: rgba(180, 180, 180, 0.438);
+    margin-bottom: .5em;
+}
+
 #contact-form-wrap {
-    border: solid black;
+    border: .5px solid black;
     padding: 25px;
 }
 
