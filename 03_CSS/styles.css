@@ -179,7 +179,7 @@ header h2 {
 #projects li {
     position: relative;
     width: 300px;
-    border: .5px black solid;
+    border: 1px black solid;
 }
 
 /* Flexbox here */
