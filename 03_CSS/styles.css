@@ -99,7 +99,6 @@ header h2 {
 }
 
 /* FLYOUT MENU IN PROGRESS */
-
 .flyout-menu {
     position: fixed;
     top: 0;
@@ -222,13 +221,6 @@ header h2 {
     opacity: .6;
 }
 
-/* .project-description a {
-    opacity: 0;
-    position: absolute;
-    top: 65%;
-    left: 41%;
-} */
-
 .project-description:hover {
     opacity: 1;
 }
@@ -242,8 +234,6 @@ header h2 {
     display: flex;
     flex-direction: column;
 }
-
-/* Flexbox here */
 
 /* Flexbox here */
 #film-portal-wrap {
@@ -660,22 +650,15 @@ header h2 {
     text-align: center;
     width: 100%;
     height: 100%;
-    /* left: 0;
-    right: 0; */
-    /* margin: 0 auto; */
     transition: all .5s ease-in-out; 
 } 
 
 #inner-contact-portal {
-    /* position: fixed; */
     display: flex;
     flex-direction: column;
-    /* justify-content: center; */
     max-width: 500px;
-    /* height: auto; */
     padding: 25px;
     margin: 0 auto;
-    /* transform: translateY(35vh); */
     z-index: 2;
 }
 
@@ -744,7 +727,6 @@ textarea {
     min-height: 100px;
 }
 
-
 #email {
     font-style: bold;
     color: black;
@@ -752,6 +734,11 @@ textarea {
 
 #email:hover {
     cursor: pointer;
+    font-style: bold;
+}
+
+#contact-linkedin:hover {
+    text-shadow: 1px 1px rgba(142, 142, 142, 0.632);
     font-style: bold;
 }
 
