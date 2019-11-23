@@ -20,9 +20,7 @@ const sendMessage = (e) => {
     const email = document.querySelector("#email");
     const message = document.querySelector("#message");
     const clear = () => {
-        name.value = ''
-        email.value = ''
-        message.value = ''
+        name.parentNode.innerHTML = "MESSAGE SENT!";
     }
   db.collection("userMessages").add({
       name: name.value,
