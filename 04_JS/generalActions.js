@@ -156,7 +156,6 @@ const shiftToFilm = () => {
     shiftContent(devPortal, '-100%', '0%', 'fixed');
     shiftContent(aboutPortal, '0%', '100%', 'fixed');
     shiftContent(contactPortal, '-100%', '100%', 'fixed');
-    console.log(this.location, "MAIN")
 };
 
 const shiftToDev = () => {
@@ -166,7 +165,6 @@ const shiftToDev = () => {
     shiftContent(devPortal, '0%', '0%', 'absolute');
     shiftContent(aboutPortal, '100%', '100%', 'fixed');
     shiftContent(contactPortal, '0%', '100%', 'fixed');
-    console.log("YEAHHHHH")
 };
 
 const shiftToAbout = () => {
@@ -176,7 +174,6 @@ const shiftToAbout = () => {
     shiftContent(devPortal, '-100%', '-100%', 'fixed');
     shiftContent(aboutPortal, '0%', '0%', 'absolute');
     shiftContent(contactPortal, '-100%', '0%', 'fixed');
-    console.log(this.location, "MAIN")
 };
 
 const shiftToContact = () => {
@@ -186,7 +183,6 @@ const shiftToContact = () => {
     shiftContent(devPortal, '0%', '-100%', 'fixed');
     shiftContent(aboutPortal, '100%', '0%', 'fixed');
     shiftContent(contactPortal, '0%', '0%', 'absolute');
-    console.log(this.location, "MAIN")
 };
 
 // const checkHash = () => {
@@ -207,7 +203,6 @@ const shiftToContact = () => {
 // }
 
 const handleLinking = (e) => {
-    console.log(this.location.hash, "<---here")
     if(e.target == filmLink || this.location.hash == "#film-portal"){
        if(!filmLink.style.borderBottom.includes('solid')){
             shiftToFilm(filmLink);
