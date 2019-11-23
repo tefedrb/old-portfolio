@@ -302,12 +302,12 @@
                 <h1>Reach Out</h1>
                 <span>(Message below goes to my personal email)</span>
                 <div id="contact-form-wrap">
-                    <form id="contact-form" method="post" action="capture()" enctype="text/plain">
-                        <input name="name" type="text" class="form-control" placeholder="Name?" required>
+                    <form id="contact-form" method="post" onsubmit="sendMessage(event)" enctype="text/plain">
+                        <input id="name" name="name" type="text" class="form-control" placeholder="Name?" required>
                         <br />
-                        <input name="email" type="text" class="form-control" placeholder="Email" required>
+                        <input id="email" name="email" type="text" class="form-control" placeholder="Email" required>
                         <br />
-                        <textarea name="message" class="form-control" rows="4" placeholder="Message..." required></textarea>
+                        <textarea id="message" name="message" class="form-control" rows="4" placeholder="Message..." required></textarea>
                         <br />
                         <input type="submit" class="form-control submit" value="SEND MESSAGE">
                     </form>
@@ -334,7 +334,7 @@
         <script type="text/javascript" src="04_JS/slideshow.js"></script>
         <script type="text/javascript" src="04_JS/generalActions.js"></script>
         <script src="https://www.gstatic.com/firebasejs/7.5.0/firebase-app.js"></script>
-        <script src="https://www.gstatic.com/firebasejs/7.5.0/firebase-analytics.js"></script>
+        <script src="https://www.gstatic.com/firebasejs/7.5.0/firebase-firestore.js"></script>
         <script type="text/javascript" src="04_JS/firebase-config.js"></script>
     </body>
 </html>
