@@ -17,15 +17,24 @@ const db = firebase.firestore();
 const sendMessage = (e) => {
     e.preventDefault();
     const name = document.querySelector("#name");
-    const email = document.querySelector("#email");
+    const email = document.querySelector("#email-input");
     const message = document.querySelector("#message");
     const clear = () => {
         name.parentNode.innerHTML = "MESSAGE SENT!";
     }
+    const currentDate = new Date();
+    const formatDate = `${currentDate.getMonth() + 1}/
+        ${currentDate.getDate()}/
+        ${currentDate.getFullYear()}` 
+    const formatTime = `${currentDate.getHours()}:
+        ${currentDate.getMinutes()}:${currentDate.getSeconds()}`
+
   db.collection("userMessages").add({
       name: name.value,
       email: email.value,
-      message: message.value
+      message: message.value,
+      date: formatDate,
+      time: formatTime
   })
   .then((res) => {
     console.log(res)
