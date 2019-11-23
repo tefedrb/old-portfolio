@@ -9,6 +9,18 @@
     appId: "1:362194574991:web:87d572c3f3d7519f655afa",
     measurementId: "G-D3VVP0D9Y4"
   };
+
   // Initialize Firebase
   firebase.initializeApp(firebaseConfig);
   firebase.analytics();
+
+  // add firestore
+  const db = firebase.firestore();
+  const capture = (e) => {
+    e.preventDefault()
+    console.log(e);
+  }
+  const name = document.querySelector()
+  db.collections("messages").add({
+      
+  })
