@@ -641,6 +641,11 @@ header h2 {
     width: 50%;
 }
 
+#inner-about-portal span {
+    opacity: .5;
+    font-size: .8em;
+}
+
 #contact-portal {
     position: fixed;
     display: flex;
