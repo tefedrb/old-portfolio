@@ -629,13 +629,16 @@ header h2 {
 
 #inner-about-portal {
     color: black;
-    margin-top: 50px;
     display: inline-block;
     max-width: 500px;
     padding: 25px;
     margin-bottom: 25px;
     background-color: rgba(255, 255, 255, 0.8);
     border: .5px solid black;
+}
+
+#inner-about-portal img {
+    width: 50%;
 }
 
 #contact-portal {
@@ -760,12 +763,16 @@ footer img {
     height: 50px; 
 }
 
-footer p {
+.footer-img-right {
     position: absolute;
-    opacity: .5;
+    width: 12%;
+    opacity: .8;
     right: 1%;
-    bottom: 30%;
     float: right;
+}
+
+.footer-img-right:hover {
+    opacity: 1;
 }
 
 @media (max-height: 825px) {
