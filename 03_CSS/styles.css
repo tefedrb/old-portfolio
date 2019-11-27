@@ -783,7 +783,7 @@ footer img {
 
 .footer-img-right {
     position: absolute;
-    width: 12%;
+    width: 100px;
     opacity: .8;
     right: 1%;
     float: right;
