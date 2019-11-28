@@ -272,7 +272,7 @@ devPortal.addEventListener('click', (e) => {
 
 $('.ham-menu-click').on('click', function (e){
     e.preventDefault();
-    $('.flyout-menu').toggleClass('flyout-menu-out')
+    $('.flyout-menu').toggleClass('flyout-menu-out');
 });
 
 const hiddenOnAllPortals = (except) => {
