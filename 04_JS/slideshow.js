@@ -146,10 +146,10 @@ $('body').on('keydown', function (e) {
     }
 })
 
-const modifyClassList = (htmlCollection, thisclass, add) => {
+const modifyClassList = (htmlCollection, thisClass, add) => {
     const toArr = Array.from(htmlCollection);
-    add ? toArr.forEach(i => i.classList.add(thisclass)) :
-    toArr.forEach(i => i.classList.remove(thisclass));
+    add ? toArr.forEach(i => i.classList.add(thisClass)) :
+    toArr.forEach(i => i.classList.remove(thisClass));
 }
 
 editingPortal.addEventListener('click', (e)=>{
