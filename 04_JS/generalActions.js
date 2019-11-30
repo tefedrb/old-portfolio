@@ -133,8 +133,11 @@ const portalOpacityAndVid = (portal) => {
     if(portal == "filmPortal"){
         filmPortal.style.opacity = '1';
         setTimeout(function(){
-            filmPortal.querySelector('#film-video-bg').style.opacity = '1';
-            filmVidBg.play();
+            // Need to make this DRY
+            if(filmPortal.querySelector('#film-video-bg')){
+                filmPortal.querySelector('#film-video-bg').style.opacity = '1';
+                filmVidBg.play();
+            }
         }, 500)
     } else {
         filmPortal.style.opacity = '0';
@@ -284,16 +287,20 @@ const hiddenOnAllPortals = (except) => {
 // Event listener for window - if certain width delete mp4 from film portal?
 // Detecting whether the browser is being opened on a mobile device...
 
-
-window.addEventListener('resize', (e) => {
-    console.log(e.target.innerWidth)
-    if(e.target.innerWidth < 565){
-        // Need to grab video element and delete
-        const videoBg = document.querySelector('#film-video-bg');
+const removeFilmBgVid = () => {
+    const videoBg = document.querySelector('#film-video-bg');
+        if(!videoBg) return;
         videoBg.parentNode.removeChild(videoBg);
         filmPortal.style.backgroundColor = 'black';
+        
+}
+
+window.addEventListener('resize', (e) => {
+    if(e.target.innerWidth < 565){
+      removeFilmBgVid();
     }
 })
+
 
 // const sendMail = await fetch ('php/mail.php', {
 //     method: 'POST',
@@ -301,5 +308,11 @@ window.addEventListener('resize', (e) => {
 // }) 
 
 
-window.addEventListener("load", handleLinking);
+window.addEventListener("load", (e) => {
+        handleLinking(e); 
+        if(window.innerWidth < 565){
+            removeFilmBgVid() 
+        }
+    }
+);
 
