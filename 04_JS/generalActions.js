@@ -289,7 +289,7 @@ window.addEventListener('resize', (e) => {
     console.log(e.target.innerWidth)
     if(e.target.innerWidth < 565){
         // Need to grab video element and delete
-        const videoBg = document.querySelector('#filmPortalBg');
+        const videoBg = document.querySelector('#film-video-bg');
         videoBg.parentNode.removeChild(videoBg);
         filmPortal.style.backgroundColor = 'black';
     }
