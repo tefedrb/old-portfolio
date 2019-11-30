@@ -281,6 +281,18 @@ const hiddenOnAllPortals = (except) => {
   })
 };
 
+// Event listener for window - if certain width delete mp4 from film portal?
+// Detecting whether the browser is being opened on a mobile device...
+
+
+window.addEventListener('resize', (e) => {
+    console.log(e.target.innerWidth)
+    if(e.target.innerWidth < 565){
+        // Need to grab video element and delete
+        const videoBg = document.querySelector('#filmPortalBg');
+        console.log(videoBg.parentNode.children, "Children nodes")
+    }
+})
 
 // const sendMail = await fetch ('php/mail.php', {
 //     method: 'POST',
