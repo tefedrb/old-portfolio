@@ -454,90 +454,90 @@ header h2 {
 }
 
 #slide1 {  
-    background-image: url("../01_IMAGES/Rhythm_Roulette_Thumbnails/RR_HitBoy_Thumbnail.png")
+    background-image: url("../imgs/Rhythm_Roulette_Thumbnails/RR_HitBoy_Thumbnail.png")
 }
 
 #slide2 {
-    background-image: url("../01_IMAGES/Rhythm_Roulette_Thumbnails/RR_Thumbnail_TomMisch_nologo.jpg");
+    background-image: url("../imgs/Rhythm_Roulette_Thumbnails/RR_Thumbnail_TomMisch_nologo.jpg");
 }
 
 #slide3 {
-    background-image: url("../01_IMAGES/Rhythm_Roulette_Thumbnails/RR_Supah-Mario_Thumbnail2.jpg");
+    background-image: url("../imgs/Rhythm_Roulette_Thumbnails/RR_Supah-Mario_Thumbnail2.jpg");
 }
 
 #slide4 {
-    background-image: url("../01_IMAGES/Rhythm_Roulette_Thumbnails/RR_Thumbnail_DameGrease_nologo.jpg");
+    background-image: url("../imgs/Rhythm_Roulette_Thumbnails/RR_Thumbnail_DameGrease_nologo.jpg");
 }
 
 #slide5 {
-    background-image: url("../01_IMAGES/Rhythm_Roulette_Thumbnails/RR_Thumbnail_Swarvy_logo.jpg");
+    background-image: url("../imgs/Rhythm_Roulette_Thumbnails/RR_Thumbnail_Swarvy_logo.jpg");
 }
 
 #slide6 {
-    background-image: url("../01_IMAGES/Rhythm_Roulette_Thumbnails/RR_Thumbnail_MrRogers_nologo.jpg");
+    background-image: url("../imgs/Rhythm_Roulette_Thumbnails/RR_Thumbnail_MrRogers_nologo.jpg");
 }
 
 #slide1-si {  
-    background-image: url("../01_IMAGES/SI_Thumbnails/Juicy.png");
+    background-image: url("../imgs/SI_Thumbnails/Juicy.png");
     background-position: left;
 }
 
 #slide2-si {
-    background-image: url("../01_IMAGES/SI_Thumbnails/Denzel.png");
+    background-image: url("../imgs/SI_Thumbnails/Denzel.png");
     background-position: left;  
 }
 
 #slide3-si {
-    background-image: url("../01_IMAGES/SI_Thumbnails/Swizz.png");
+    background-image: url("../imgs/SI_Thumbnails/Swizz.png");
     background-position: left;
 }
 
 #slide4-si {
-    background-image: url("../01_IMAGES/SI_Thumbnails/Wiz.png");
+    background-image: url("../imgs/SI_Thumbnails/Wiz.png");
     background-position: left;
 }
 
 #slide5-si {
-    background-image: url("../01_IMAGES/SI_Thumbnails/Nipsey.png");
+    background-image: url("../imgs/SI_Thumbnails/Nipsey.png");
     background-position: left;
 }
 
 #slide6-si {
-    background-image: url("../01_IMAGES/SI_Thumbnails/LilBaby.png");
+    background-image: url("../imgs/SI_Thumbnails/LilBaby.png");
     background-position: left;
 }
 
 #slide7-si {
-    background-image: url("../01_IMAGES/SI_Thumbnails/octagon.png");
+    background-image: url("../imgs/SI_Thumbnails/octagon.png");
     background-position: left;
 }
 
 #slide1-com {  
-    background-image: url("../01_IMAGES/Commercial_Thumbnails/Hennessy.png")
+    background-image: url("../imgs/Commercial_Thumbnails/Hennessy.png")
 }
 
 #slide2-com {
-    background-image: url("../01_IMAGES/Commercial_Thumbnails/RemyMartin.png");
+    background-image: url("../imgs/Commercial_Thumbnails/RemyMartin.png");
 }
 
 #slide3-com {
-    background-image: url("../01_IMAGES/Commercial_Thumbnails/YoungDolph.png");
+    background-image: url("../imgs/Commercial_Thumbnails/YoungDolph.png");
 }
 
 #slide4-com {
-    background-image: url("../01_IMAGES/Commercial_Thumbnails/Stance.png");
+    background-image: url("../imgs/Commercial_Thumbnails/Stance.png");
 }
 
 #slide1-NFL {
-    background-image: url("../01_IMAGES/Commercial_Thumbnails/BrandonMarshall.png");
+    background-image: url("../imgs/Commercial_Thumbnails/BrandonMarshall.png");
 }
 
 #slide2-NFL {
-    background-image: url("../01_IMAGES/Commercial_Thumbnails/GoldenTate.png");
+    background-image: url("../imgs/Commercial_Thumbnails/GoldenTate.png");
 }
 
 #slide3-NFL {
-    background-image: url("../01_IMAGES/Commercial_Thumbnails/ChrisLong.png");
+    background-image: url("../imgs/Commercial_Thumbnails/ChrisLong.png");
 }
 
 .slideshow-display-off {
@@ -629,7 +629,7 @@ header h2 {
 
 #about-portal {
     position: fixed;
-    background: url("../01_IMAGES/Body_gfx/washington-heights.png") no-repeat center center fixed;
+    background: url("../imgs/Body_gfx/washington-heights.png") no-repeat center center fixed;
     background-size: cover;
     opacity: 0;
     display: flex;
