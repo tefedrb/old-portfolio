@@ -27,6 +27,16 @@ const headerLogoContact = document.querySelector('#logo-contact');
 const slideShowArray = Array.from(document.querySelector('#slideshow').children);
 const filmVidAll = Array.from(filmPortal.querySelectorAll('video'));
 const filmVidBg = filmPortal.querySelector('#film-video-bg');
+const loading = document.querySelector('.loader-container');
+
+window.onload = function(){
+    setTimeout(function(){
+        loading.style.opacity = 0
+    }, 500)
+    setTimeout(function(){
+        loading.parentNode.removeChild(loading)
+    }, 1500)
+}
 
 const realignWindow = (positionY, duration) => {
     // Thanks to gizma.com/easing formulas and Dev Ed (youtube channel) for inspiring this function
@@ -258,20 +268,21 @@ flyOutMenu.addEventListener('click', function(e){
     }
 })
 
-devPortal.addEventListener('click', (e) => {
-    if(e.target == trainer){
+// I need to add live projects to repo / or connect to other repos
+// devPortal.addEventListener('click', (e) => {
+//     if(e.target == trainer){
        
-        window.location.pathname = '/Multi_Game/index.html';
-    }
-    if(e.target == quadSquad){
+//         window.location.pathname = '/Multi_Game/index.html';
+//     }
+//     if(e.target == quadSquad){
        
-        window.location.pathname = '/Quad_Squad/index.html';
-    }
-    if(e.target == travelBuddy){
+//         window.location.pathname = '/Quad_Squad/index.html';
+//     }
+//     if(e.target == travelBuddy){
     
-        window.location.pathname = '/Travel_Buddy/index.html';
-    }
-})
+//         window.location.pathname = '/Travel_Buddy/index.html';
+//     }
+// })
 
 $('.ham-menu-click').on('click', function (e){
     e.preventDefault();
