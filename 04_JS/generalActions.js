@@ -312,12 +312,10 @@ window.addEventListener('resize', (e) => {
     }
 })
 
-
 // const sendMail = await fetch ('php/mail.php', {
 //     method: 'POST',
 //     body: JSON.stringify()
 // }) 
-
 
 window.addEventListener("load", (e) => {
         handleLinking(e); 
