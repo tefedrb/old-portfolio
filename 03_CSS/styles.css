@@ -51,6 +51,11 @@ a {
     animation: round .5s linear infinite;
 }
 
+@keyframes round{
+    from{transform: rotate(0deg)}
+    to{transform: rotate(360deg)}
+}
+
 #main-nav a:hover {
     border-bottom: 1px solid #000;
 }
