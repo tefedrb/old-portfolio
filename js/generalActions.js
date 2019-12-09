@@ -9,8 +9,9 @@ const filmFlyOutLink = document.querySelector('.filmmaking-flyout');
 const aboutFlyOutLink = document.querySelector('.about-link-flyout');
 const contactFlyOutLink = document.querySelector('.contact-link-flyout');
 const flyOutMenu = document.querySelector('.flyout-menu');
-// const filmPortal = document.querySelector('#film-portal-wrap');
+const filmPortal = document.querySelector('#film-portal-wrap');
 const devPortal = document.querySelector('#dev-portal-wrap');
+const mainPortal = document.querySelector('main');
 const aboutPortal = document.querySelector('#about-portal');
 const contactPortal = document.querySelector('#contact-portal');
 const footer = document.querySelector('footer');
@@ -21,13 +22,14 @@ const project2 = document.querySelector('#travel-buddy');
 const email = document.querySelector('#email');
 const headerLogoArray = Array.from(document.querySelector('header h1').children);
 const headerLogoDev = document.querySelector('#logo-dev');
-// const headerLogoFilm = document.querySelector('#logo-film');
+const headerLogoFilm = document.querySelector('#logo-film');
 const headerLogoAbout = document.querySelector('#logo-about');
 const headerLogoContact = document.querySelector('#logo-contact');
-// const slideShowArray = Array.from(document.querySelector('#slideshow').children);
-// const filmVidAll = Array.from(filmPortal.querySelectorAll('video'));
-// const filmVidBg = filmPortal.querySelector('#film-video-bg');
+const slideShowArray = Array.from(document.querySelector('#slideshow').children);
+const filmVidAll = Array.from(filmPortal.querySelectorAll('video'));
+const filmVidBg = filmPortal.querySelector('#film-video-bg');
 const loading = document.querySelector('.loader-container');
+
 
 // window.onload = function(){
 //     setTimeout(function(){
@@ -38,59 +40,60 @@ const loading = document.querySelector('.loader-container');
 //     }, 1500)
 // }
 
-// const realignWindow = (positionY, duration) => {
-//     // Thanks to gizma.com/easing formulas and Dev Ed (youtube channel) for inspiring this function
-//     if(window.scrollY === positionY) return;
-//     const currentScroll = window.scrollY;
-//     let distance;  
-//     let startTime = null;
-//     const ease = (t, b, c, d) =>{
-//         return c*t/d + b;
-//     }; 
+const realignWindow = (positionY, duration) => {
+    // Thanks to gizma.com/easing formulas and Dev Ed (youtube channel) for inspiring this function
+    if(window.scrollY === positionY) return;
+    const currentScroll = window.scrollY;
+    let distance;  
+    let startTime = null;
+    const ease = (t, b, c, d) =>{
+        return c*t/d + b;
+    }; 
 
-//     currentScroll > positionY ? distance = (currentScroll - positionY) * -1:
-//     distance = positionY;
+    currentScroll > positionY ? distance = (currentScroll - positionY) * -1:
+    distance = positionY;
 
-//     const animation = (currentTime) =>{
-//         if(startTime === null) startTime = currentTime;
-//         const timeElapsed = currentTime - startTime;
-//          // To use easeInOutCubic to scroll - using window.scrollTo()
-//          const easeInOut = ease(timeElapsed, currentScroll, distance, duration);
-//          window.scrollTo(0, easeInOut);
-//          //base case - compare timeElapsed to duration
-//         if(duration > timeElapsed) requestAnimationFrame(animation);
-//     };
-//     requestAnimationFrame(animation);
-// };
+    const animation = (currentTime) =>{
+        if(startTime === null) startTime = currentTime;
+        const timeElapsed = currentTime - startTime;
+         // To use easeInOutCubic to scroll - using window.scrollTo()
+         const easeInOut = ease(timeElapsed, currentScroll, distance, duration);
+         window.scrollTo(0, easeInOut);
+         //base case - compare timeElapsed to duration
+        if(duration > timeElapsed) requestAnimationFrame(animation);
+    };
+    requestAnimationFrame(animation);
+};
 
-// const linksArray = () => {
-//     let mainNavLinks = document.querySelector('#main-nav').children
-//     let returnArr = [];
-//     for(let i = 0; i < mainNavLinks.length; i++){
-//         if(mainNavLinks[i].tagName == 'A'){
-//             returnArr.push(mainNavLinks[i]);
-//         }
-//     }
-//     return returnArr
-// };
 
-// const shiftContent = (element, transX, transY, position) => {
-//     realignWindow(0, 500);
-//     setTimeout(function(){
-//         let translate = `translateX(${transX})`;
-//     if(transY && transX){
-//         translate = `translate(${transX}, ${transY})`;
-//     } else if(transY){
-//         translate = `translate(0%, ${transY})`;
-//     }
-//     element.style.transform = translate;
-//     }, 250)
-//     if(position){
-//         setTimeout(function(){
-//             element.style.position = position;
-//         }, 750)
-//     }
-// };
+const linksArray = () => {
+    let mainNavLinks = document.querySelector('#main-nav').children
+    let returnArr = [];
+    for(let i = 0; i < mainNavLinks.length; i++){
+        if(mainNavLinks[i].tagName == 'A'){
+            returnArr.push(mainNavLinks[i]);
+        }
+    }
+    return returnArr
+};
+
+const shiftContent = (element, transX, transY, position) => {
+    realignWindow(0, 500);
+    setTimeout(function(){
+        let translate = `translateX(${transX})`;
+    if(transY && transX){
+        translate = `translate(${transX}, ${transY})`;
+    } else if(transY){
+        translate = `translate(0%, ${transY})`;
+    }
+    element.style.transform = translate;
+    }, 250)
+    if(position){
+        setTimeout(function(){
+            element.style.position = position;
+        }, 750)
+    }
+};
 
 // const computedTransX = (element) => {
 //     let transXstring = element.style.transform
@@ -122,63 +125,63 @@ const loading = document.querySelector('.loader-container');
 //     }
 // };
 
-// const linkSectionIndicator = (link) => {
-//     const saveLinks = linksArray()
-//     for(let i = 0; i < saveLinks.length; i++){
-//         if(saveLinks[i] !== link){
-//             saveLinks[i].style.borderBottom = '0px'
-//         }
-//     }
-//     link.style.borderBottom = '1px solid #000'
-// };
+const linkSectionIndicator = (link) => {
+    const saveLinks = linksArray()
+    for(let i = 0; i < saveLinks.length; i++){
+        if(saveLinks[i] !== link){
+            saveLinks[i].style.borderBottom = '0px'
+        }
+    }
+    link.style.borderBottom = '1px solid #000'
+};
 
-// const modifyHeaderLogo = (wipeClass, target, addClass) => {
-//     if(wipeClass) headerLogoArray.forEach(i => i.classList.remove(wipeClass));
-//     if(addClass) target.classList.add(addClass);
-// };
+const modifyHeaderLogo = (wipeClass, target, addClass) => {
+    if(wipeClass) headerLogoArray.forEach(i => i.classList.remove(wipeClass));
+    if(addClass) target.classList.add(addClass);
+};
 
-// const portalOpacityAndVid = (portal) => {
-//     portal === "devPortal" ? devPortal.style.opacity = '1' : 
-//     devPortal.style.opacity = '0';
-//     if(portal == "filmPortal"){
-//         filmPortal.style.opacity = '1';
-//         setTimeout(function(){
-//             // Need to make this DRY
-//             if(filmPortal.querySelector('#film-video-bg')){
-//                 filmPortal.querySelector('#film-video-bg').style.opacity = '1';
-//                 filmVidBg.play();
-//             }
-//         }, 500)
-//     } else {
-//         filmPortal.style.opacity = '0';
-//         setTimeout(function(){
-//             filmPortal.querySelector('#film-video-bg').style.opacity = '0';
-//             filmVidAll.forEach(vid => vid.pause());
-//         }, 500)
-//     }
-//     portal === "aboutPortal" ? aboutPortal.style.opacity = '1' : 
-//     aboutPortal.style.opacity = '0'; 
-//     portal === "contactPortal" ? contactPortal.style.opacity = '1':
-//     contactPortal.style.opacity = '0';
-// }
+const portalOpacityAndVid = (portal) => {
+    portal === "mainPortal" ? mainPortal.style.opacity = '1' : 
+    mainPortal.style.opacity = '0';
+    if(portal == "filmPortal"){
+        filmPortal.style.opacity = '1';
+        setTimeout(function(){
+            // Need to make this DRY
+            if(filmPortal.querySelector('#film-video-bg')){
+                filmPortal.querySelector('#film-video-bg').style.opacity = '1';
+                filmVidBg.play();
+            }
+        }, 500)
+    } else {
+        filmPortal.style.opacity = '0';
+        setTimeout(function(){
+            filmPortal.querySelector('#film-video-bg').style.opacity = '0';
+            filmVidAll.forEach(vid => vid.pause());
+        }, 500)
+    }
+    // portal === "aboutPortal" ? aboutPortal.style.opacity = '1' : 
+    // aboutPortal.style.opacity = '0'; 
+    // portal === "contactPortal" ? contactPortal.style.opacity = '1':
+    // contactPortal.style.opacity = '0';
+}
 
-// const shiftToFilm = () => {
-//     modifyHeaderLogo('logo-visible', headerLogoFilm, 'logo-visible');
-//     portalOpacityAndVid("filmPortal");
-//     shiftContent(filmPortal, '0%', '0%', 'absolute');
-//     shiftContent(devPortal, '-100%', '0%', 'fixed');
-//     shiftContent(aboutPortal, '0%', '100%', 'fixed');
-//     shiftContent(contactPortal, '-100%', '100%', 'fixed');
-// };
+const shiftToFilm = () => {
+    modifyHeaderLogo('logo-visible', headerLogoFilm, 'logo-visible');
+    portalOpacityAndVid("filmPortal");
+    shiftContent(filmPortal, '0%', '0%', 'absolute');
+    shiftContent(mainPortal, '-100%', '0%', 'fixed');
+    // shiftContent(aboutPortal, '0%', '100%', 'fixed');
+    // shiftContent(contactPortal, '-100%', '100%', 'fixed');
+};
 
-// const shiftToDev = () => {
-//     modifyHeaderLogo('logo-visible', headerLogoDev, 'logo-visible');
-//     portalOpacityAndVid("devPortal");
-//     shiftContent(filmPortal, '100%', '0%', 'fixed');
-//     shiftContent(devPortal, '0%', '0%', 'absolute');
-//     shiftContent(aboutPortal, '100%', '100%', 'fixed');
-//     shiftContent(contactPortal, '0%', '100%', 'fixed');
-// };
+const shiftToDev = () => {
+    modifyHeaderLogo('logo-visible', headerLogoDev, 'logo-visible');
+    portalOpacityAndVid("mainPortal");
+    shiftContent(filmPortal, '100%', '0%', 'fixed');
+    shiftContent(mainPortal, '0%', '0%', 'static');
+    // shiftContent(aboutPortal, '100%', '100%', 'fixed');
+    // shiftContent(contactPortal, '0%', '100%', 'fixed');
+};
 
 // const shiftToAbout = () => {
 //     modifyHeaderLogo('logo-visible', headerLogoAbout, 'logo-visible');
@@ -215,39 +218,39 @@ const loading = document.querySelector('.loader-container');
 //     }
 // }
 
-// const handleLinking = (e) => {
-//     if(e.target == filmLink || this.location.hash == "#film-portal"){
-//        if(!filmLink.style.borderBottom.includes('solid')){
-//             shiftToFilm(filmLink);
-//             linkSectionIndicator(filmLink);
-//         }
-//     }
-//     // Adding an or statement here to have the anchors present
-//     if(e.target == devLink || this.location.hash == "#dev-portal"){
-//         // e.preventDefault()
-//         if(!devLink.style.borderBottom.includes('solid')){
-//             shiftToDev(devLink);
-//             linkSectionIndicator(devLink);
-//         }
-//     }
-//     if(e.target == aboutLink || this.location.hash == "#about-portal"){
-//         // e.preventDefault()
-//         if(!aboutLink.style.borderBottom.includes('solid')){
-//             shiftToAbout(aboutLink);
-//             linkSectionIndicator(aboutLink);
-//         }
-//     }
-//     if(e.target == contactLink || this.location.hash == "#contact-portal"){
-//         // e.preventDefault()
-//         if(!contactLink.style.borderBottom.includes('solid')){
-//             shiftToContact(contactLink);
-//             linkSectionIndicator(contactLink);
-//         }
-//     }
-// }
+const handleLinking = (e) => {
+    if(e.target == filmLink || this.location.hash == "#film-portal"){
+       if(!filmLink.style.borderBottom.includes('solid')){
+            shiftToFilm(filmLink);
+            linkSectionIndicator(filmLink);
+        }
+    }
+    // Adding an or statement here to have the anchors present
+    if(e.target == devLink || this.location.hash == "#dev-portal"){
+        // e.preventDefault()
+        if(!devLink.style.borderBottom.includes('solid')){
+            shiftToDev(devLink);
+            linkSectionIndicator(devLink);
+        }
+    }
+    // if(e.target == aboutLink || this.location.hash == "#about-portal"){
+    //     // e.preventDefault()
+    //     if(!aboutLink.style.borderBottom.includes('solid')){
+    //         shiftToAbout(aboutLink);
+    //         linkSectionIndicator(aboutLink);
+    //     }
+    // }
+    // if(e.target == contactLink || this.location.hash == "#contact-portal"){
+    //     // e.preventDefault()
+    //     if(!contactLink.style.borderBottom.includes('solid')){
+    //         shiftToContact(contactLink);
+    //         linkSectionIndicator(contactLink);
+    //     }
+    // }
+}
 
-// window.addEventListener('hashchange', handleLinking);
-// header.addEventListener('click', handleLinking);
+window.addEventListener('hashchange', handleLinking);
+header.addEventListener('click', handleLinking);
 
 // flyOutMenu.addEventListener('click', function(e){
 //     if(e.target == devFlyOutLink){
@@ -298,30 +301,25 @@ const loading = document.querySelector('.loader-container');
 // Event listener for window - if certain width delete mp4 from film portal?
 // Detecting whether the browser is being opened on a mobile device...
 
-// const removeFilmBgVid = () => {
-//     const videoBg = document.querySelector('#film-video-bg');
-//         if(!videoBg) return;
-//         videoBg.parentNode.removeChild(videoBg);
-//         filmPortal.style.backgroundColor = 'black';
-//        
-// }
+const removeFilmBgVid = () => {
+    const videoBg = document.querySelector('#film-video-bg');
+        if(!videoBg) return;
+        videoBg.parentNode.removeChild(videoBg);
+        filmPortal.style.backgroundColor = 'black';
+       
+}
 
-// window.addEventListener('resize', (e) => {
-//     if(e.target.innerWidth < 565){
-//       removeFilmBgVid();
-//     }
-// })
+window.addEventListener('resize', (e) => {
+    if(e.target.innerWidth < 565){
+      removeFilmBgVid();
+    }
+})
 
-// const sendMail = await fetch ('php/mail.php', {
-//     method: 'POST',
-//     body: JSON.stringify()
-// }) 
-
-// window.addEventListener("load", (e) => {
-//         handleLinking(e); 
-//         if(window.innerWidth < 565){
-//             removeFilmBgVid() 
-//         }
-//     }
-// );
+window.addEventListener("load", (e) => {
+        handleLinking(e); 
+        if(window.innerWidth < 565){
+            removeFilmBgVid() 
+        }
+    }
+);
 
