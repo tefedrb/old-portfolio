@@ -22,7 +22,9 @@ a {
     transition: border .1s ease-in;
 }
 
-.loader-container {
+
+/* LOADER */
+/* .loader-container {
     position: absolute;
     background-color: white;
     z-index: 101;
@@ -54,7 +56,7 @@ a {
 @keyframes round{
     from{transform: rotate(0deg)}
     to{transform: rotate(360deg)}
-}
+} */
 
 #main-nav a:hover {
     border-bottom: 1px solid #000;
@@ -133,7 +135,8 @@ header h2 {
 }
 
 /* FLYOUT MENU IN PROGRESS */
-.flyout-menu {
+
+/* .flyout-menu {
     position: fixed;
     display: flex;
     justify-content: center;
@@ -170,11 +173,12 @@ header h2 {
 .ham-menu-click {
     z-index: 100;
     display: none;
-}
+} */
 
-/* Flexbox here */
+
+/* DEV PORTAL STARTS HERE */
 #dev-portal-wrap {
-    position: absolute;
+    /* position: absolute; */
     width: 100%;
     transition: all .5s ease-in-out;
 }
@@ -269,8 +273,9 @@ header h2 {
     flex-direction: column;
 }
 
-/* Flexbox here */
-#film-portal-wrap {
+/* FILM PORTAL STARTS HERE */
+
+/* #film-portal-wrap {
     position: fixed;
     transform: translate(100%, 0%);
     opacity: 0;
@@ -405,16 +410,16 @@ header h2 {
 }
 
 /* Increased opacity when user mouse is on an arrow */
-#arrows img:hover {
+/* #arrows img:hover {
     opacity: 1;
-}
+} */
 
 /* Show arrows when users mouse is over slideshow */
-#slideshow:hover ~ #outer-arrows {
+/* #slideshow:hover ~ #outer-arrows {
     opacity: 1;
-}
+} */
 
-.slides-container {
+/* .slides-container {
     position: relative;
     display: block;
     width: 2500px;
@@ -625,21 +630,22 @@ header h2 {
 	left: 0;
 	width: 100%;
 	height: 100%;
-}
+} */
 
 #about-portal {
-    position: fixed;
+    /* position: fixed; */
     background: url("../imgs/Body_gfx/washington-heights.png") no-repeat center center fixed;
-    background-size: cover;
-    opacity: 0;
+    /* background-size: cover; */
+    /* opacity: 0; */
+    opacity: 1;
     display: flex;
     flex-direction: column;
     align-items: center;
     justify-content: center;
     width: 100%;
     height: 100%;
-    overflow-x: hidden;
-    transform: translate(100%, 100%);
+    /* overflow-x: hidden; */
+    /* transform: translate(100%, 100%); */
     text-align: center;
     transition: all .5s ease-in-out; 
 } 
@@ -694,14 +700,14 @@ header h2 {
 }
 
 #contact-portal {
-    position: fixed;
+    /* position: fixed; */
     display: flex;
     background-color: "#CA9947";
     flex-direction: column;
     justify-content: center;
     opacity: 0;
-    overflow-x: hidden;
-    transform: translate(0%, 100%);
+    /* overflow-x: hidden; */
+    /* transform: translate(0%, 100%); */
     text-align: center;
     width: 100%;
     height: 100%;
