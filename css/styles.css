@@ -23,13 +23,7 @@ a {
     transition: border .1s ease-in;
 }
 
-main {
-    transform: translate(0px, 0px);
-    width: 100%;
-    transition: all .5s ease-in-out;
-}
-/* LOADER */
-/* .loader-container {
+.loader-container {
     position: absolute;
     background-color: white;
     z-index: 101;
@@ -42,6 +36,7 @@ main {
     transition: all .5s ease-in-out;
 }
 
+/* LOADER */
 .loader {
     position: absolute;
     top: 0;
@@ -61,19 +56,25 @@ main {
 @keyframes round{
     from{transform: rotate(0deg)}
     to{transform: rotate(360deg)}
-} */
+}
+
+main {
+    transform: translate(0px, 0px);
+    width: 100%;
+    transition: all .5s ease-in-out;
+}
 
 #main-nav a:hover {
     border-bottom: 1px solid #000;
 }
 
-.development {
+/* .development {
   border-bottom: 1px solid #000;   
 }
 
 .filmmaking {
     border-bottom: 0px solid #000;
-}
+} */
 
 header {
     z-index: 10;
