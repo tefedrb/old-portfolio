@@ -142,7 +142,7 @@ header h2 {
 
 /* FLYOUT MENU IN PROGRESS */
 
-/* .flyout-menu {
+.flyout-menu {
     position: fixed;
     display: flex;
     justify-content: center;
@@ -179,7 +179,7 @@ header h2 {
 .ham-menu-click {
     z-index: 100;
     display: none;
-} */
+}
 
 
 /* DEV PORTAL STARTS HERE */
@@ -565,7 +565,6 @@ footer img {
 
     #film-portal-wrap {
         /* allows for full stretch of background */
-        height: 100%;
         overflow: scroll;
     }
 

@@ -4,10 +4,10 @@ const filmLink = document.querySelector('.filmmaking');
 const devLink = document.querySelector('.development');
 const aboutLink = document.querySelector('.about-link');
 const contactLink = document.querySelector('.contact-link');
-const devFlyOutLink = document.querySelector('.development-flyout');
-const filmFlyOutLink = document.querySelector('.filmmaking-flyout');
-const aboutFlyOutLink = document.querySelector('.about-link-flyout');
-const contactFlyOutLink = document.querySelector('.contact-link-flyout');
+const devFlyOutLink = document.querySelector('#development-flyout');
+const filmFlyOutLink = document.querySelector('#filmmaking-flyout');
+const aboutFlyOutLink = document.querySelector('#about-link-flyout');
+const contactFlyOutLink = document.querySelector('#contact-link-flyout');
 const flyOutMenu = document.querySelector('.flyout-menu');
 const filmPortal = document.querySelector('#film-portal-wrap');
 const devPortal = document.querySelector('#dev-portal-wrap');
@@ -201,24 +201,24 @@ window.addEventListener('scroll', function(){
     }
 })
 
-// flyOutMenu.addEventListener('click', function(e){
-//     if(e.target == devFlyOutLink){
-//         shiftToDev();
-//         $('.flyout-menu').toggleClass('flyout-menu-out');
-//     }
-//     if(e.target == filmFlyOutLink){
-//         shiftToFilm();
-//         $('.flyout-menu').toggleClass('flyout-menu-out');
-//     }
-//     if(e.target == aboutFlyOutLink){
-//         shiftToAbout();
-//         $('.flyout-menu').toggleClass('flyout-menu-out');
-//     }
-//     if(e.target == contactFlyOutLink){
-//         shiftToContact();
-//         $('.flyout-menu').toggleClass('flyout-menu-out');
-//     }
-// })
+flyOutMenu.addEventListener('click', function(e){
+    if(e.target == devFlyOutLink){
+        shiftToDev();
+        $('.flyout-menu').toggleClass('flyout-menu-out');
+    }
+    if(e.target == filmFlyOutLink){
+        shiftToFilm();
+        $('.flyout-menu').toggleClass('flyout-menu-out');
+    }
+    if(e.target == aboutFlyOutLink){
+        shiftToAbout();
+        $('.flyout-menu').toggleClass('flyout-menu-out');
+    }
+    if(e.target == contactFlyOutLink){
+        shiftToContact();
+        $('.flyout-menu').toggleClass('flyout-menu-out');
+    }
+})
 
 // I need to add live projects to repo / or connect to other repos
 // devPortal.addEventListener('click', (e) => {
@@ -236,10 +236,10 @@ window.addEventListener('scroll', function(){
 //     }
 // })
 
-// $('.ham-menu-click').on('click', function (e){
-//     e.preventDefault();
-//     $('.flyout-menu').toggleClass('flyout-menu-out');
-// });
+$('.ham-menu-click').on('click', function (e){
+    e.preventDefault();
+    $('.flyout-menu').toggleClass('flyout-menu-out');
+});
 
 // const hiddenOnAllPortals = (except) => {
 //   slideShowArray.forEach(i => {
