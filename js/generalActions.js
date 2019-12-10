@@ -30,7 +30,6 @@ const filmVidAll = Array.from(filmPortal.querySelectorAll('video'));
 const filmVidBg = filmPortal.querySelector('#film-video-bg');
 const loading = document.querySelector('.loader-container');
 
-
 // window.onload = function(){
 //     setTimeout(function(){
 //         loading.style.opacity = 0
@@ -41,7 +40,8 @@ const loading = document.querySelector('.loader-container');
 // }
 
 const realignWindow = (positionY, duration) => {
-    // Thanks to gizma.com/easing formulas and Dev Ed (youtube channel) for inspiring this function
+    // Thanks to gizma.com/easing formulas and Dev Ed (youtube channel) 
+    // for inspiring this function.
     if(window.scrollY === positionY) return;
     const currentScroll = window.scrollY;
     let distance;  
@@ -49,8 +49,10 @@ const realignWindow = (positionY, duration) => {
     const ease = (t, b, c, d) =>{
         return c*t/d + b;
     }; 
+    console.log("went")
 
-    currentScroll > positionY ? distance = (currentScroll - positionY) * -1:
+    currentScroll > positionY ? distance = (currentScroll - positionY) * -1 
+    :
     distance = positionY;
 
     const animation = (currentTime) =>{
@@ -67,7 +69,8 @@ const realignWindow = (positionY, duration) => {
 
 
 const linksArray = () => {
-    let mainNavLinks = document.querySelector('#main-nav').children
+    // Get main-nav body and collect child elements
+    let mainNavLinks = document.querySelector('#main-nav').children;
     let returnArr = [];
     for(let i = 0; i < mainNavLinks.length; i++){
         if(mainNavLinks[i].tagName == 'A'){
@@ -129,10 +132,10 @@ const linkSectionIndicator = (link) => {
     const saveLinks = linksArray()
     for(let i = 0; i < saveLinks.length; i++){
         if(saveLinks[i] !== link){
-            saveLinks[i].style.borderBottom = '0px'
+            saveLinks[i].style.borderBottom = '0px';
         }
     }
-    link.style.borderBottom = '1px solid #000'
+    link.style.borderBottom = '1px solid #000';
 };
 
 const modifyHeaderLogo = (wipeClass, target, addClass) => {
@@ -174,14 +177,31 @@ const shiftToFilm = () => {
     // shiftContent(contactPortal, '-100%', '100%', 'fixed');
 };
 
-const shiftToDev = () => {
+const shiftToDev = (element) => {
     modifyHeaderLogo('logo-visible', headerLogoDev, 'logo-visible');
     portalOpacityAndVid("mainPortal");
     shiftContent(filmPortal, '100%', '0%', 'fixed');
     shiftContent(mainPortal, '0%', '0%', 'static');
+    if(element){
+        setTimeout(function(){
+            console.log("ok");
+            element.scrollIntoView();
+        }, 800)
+    }
     // shiftContent(aboutPortal, '100%', '100%', 'fixed');
     // shiftContent(contactPortal, '0%', '100%', 'fixed');
 };
+
+const shiftToAbout = () => {
+    // Check if on dev - if not switch to dev then scroll
+    const styles = window.getComputedStyle(mainPortal)
+    
+    if(styles.getPropertyValue("transform") != "matrix(1, 0, 0, 1, 0, 0)"){
+        console.log("sick")
+        shiftToDev(aboutPortal);
+    }
+
+}
 
 // const shiftToAbout = () => {
 //     modifyHeaderLogo('logo-visible', headerLogoAbout, 'logo-visible');
@@ -221,7 +241,7 @@ const shiftToDev = () => {
 const handleLinking = (e) => {
     if(e.target == filmLink || this.location.hash == "#film-portal"){
        if(!filmLink.style.borderBottom.includes('solid')){
-            shiftToFilm(filmLink);
+            shiftToFilm();
             linkSectionIndicator(filmLink);
         }
     }
@@ -233,20 +253,20 @@ const handleLinking = (e) => {
             linkSectionIndicator(devLink);
         }
     }
-    // if(e.target == aboutLink || this.location.hash == "#about-portal"){
-    //     // e.preventDefault()
-    //     if(!aboutLink.style.borderBottom.includes('solid')){
-    //         shiftToAbout(aboutLink);
-    //         linkSectionIndicator(aboutLink);
-    //     }
-    // }
-    // if(e.target == contactLink || this.location.hash == "#contact-portal"){
-    //     // e.preventDefault()
-    //     if(!contactLink.style.borderBottom.includes('solid')){
-    //         shiftToContact(contactLink);
-    //         linkSectionIndicator(contactLink);
-    //     }
-    // }
+    if(e.target == aboutLink || this.location.hash == "#about-portal"){
+        // e.preventDefault()
+        if(!aboutLink.style.borderBottom.includes('solid')){
+            shiftToAbout();
+            linkSectionIndicator(aboutLink);
+        }
+    }
+    if(e.target == contactLink || this.location.hash == "#contact-portal"){
+        // e.preventDefault()
+        if(!contactLink.style.borderBottom.includes('solid')){
+            shiftToContact();
+            linkSectionIndicator(contactLink);
+        }
+    }
 }
 
 window.addEventListener('hashchange', handleLinking);
@@ -322,4 +342,6 @@ window.addEventListener("load", (e) => {
         }
     }
 );
+
+// const filmFrag = document.createDocumentFragment();
 

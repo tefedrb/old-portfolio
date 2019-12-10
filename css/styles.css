@@ -13,6 +13,7 @@ body {
     max-width: 100%;
     overflow-x: hidden;
     transition: all .2s ease-in-out;
+    scroll-behavior: smooth;
 }
 
 a {
@@ -23,6 +24,7 @@ a {
 }
 
 main {
+    transform: translate(0px, 0px);
     width: 100%;
     transition: all .5s ease-in-out;
 }
@@ -283,6 +285,8 @@ header h2 {
     background: url("../imgs/Body_gfx/washington-heights.png") no-repeat center center fixed;
     /* background-size: cover; */
     /* opacity: 0; */
+    padding-top: 1em;
+    padding-bottom: 1em;
     opacity: 1;
     display: flex;
     flex-direction: column;
