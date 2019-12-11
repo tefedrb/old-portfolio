@@ -198,14 +198,13 @@ editingPortal.addEventListener('click', (e)=>{
     }
 })
 
+const filmPortalWrap = document.querySelector('#film-portal-wrap');
+
 window.addEventListener('resize', function(){
-    if(this.innerWidth == "754"){
-        console.log("gotcha");
+    // This helps to fix an issue where editing protfolio doesn't collapse appropriately
+    if(filmPortalWrap.style.transform === "translate(0%, 0%)"){
         switchVideoGroup(rrWorkLink, '#slides-RR');
-    }
-    if(this.innerWidth > "756" && this.innerWidth < "800"){
         switchVideoGroup(rrWorkLink, '#slides-RR'); 
-        console.log("gotcha2");
     }
 })
 
