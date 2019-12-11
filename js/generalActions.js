@@ -236,10 +236,9 @@ const checkHash = () => {
 
 const removeFilmBgVid = () => {
     const videoBg = document.querySelector('#film-video-bg');
-        if(!videoBg) return;
-        videoBg.parentNode.removeChild(videoBg);
-        filmPortal.style.backgroundColor = 'black';
-       
+    if(!videoBg) return;
+    videoBg.parentNode.removeChild(videoBg);
+    filmPortal.style.backgroundColor = 'black';
 }
 
 window.addEventListener('resize', (e) => {

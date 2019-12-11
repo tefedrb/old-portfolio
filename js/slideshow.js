@@ -202,7 +202,7 @@ const filmPortalWrap = document.querySelector('#film-portal-wrap');
 
 window.addEventListener('resize', function(){
     // This helps to fix an issue where editing protfolio doesn't collapse appropriately
-    if(filmPortalWrap.style.transform === "translate(0%, 0%)"){
+    if(filmPortalWrap.style.transform === "translate(0%, 0%)" && this.innerWidth > 754){
         switchVideoGroup(rrWorkLink, '#slides-RR');
         switchVideoGroup(rrWorkLink, '#slides-RR'); 
     }
