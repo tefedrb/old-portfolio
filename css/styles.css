@@ -380,7 +380,7 @@ form .submit:hover {
 textarea {
     max-width: 450px;
     max-height: 150px;
-    min-width: 400px;
+    min-width: 100%;
     min-height: 100px;
 }
 
