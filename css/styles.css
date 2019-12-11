@@ -434,15 +434,13 @@ footer img {
     }
 
     footer {
-        height: 1.4rem;
-    }
-
-    footer p {
-        font-size: .5rem;
+        height: 1.6rem;
     }
 
     footer img {
-        display: none;
+        width: 1.6em;
+        height: 1.6em;
+        padding: 2px;
     }
 
     .video-category {
@@ -524,20 +522,6 @@ footer img {
 
     #slideCountContainer {
         display: none;
-    }
-
-    footer {
-        height: 1.6rem;
-    }
-
-    footer p {
-        font-size: .5rem;
-    }
-
-    footer img {
-        width: 1.6em;
-        height: 1.6em;
-        padding: 2px;
     }
 
     .ham-menu-click {
