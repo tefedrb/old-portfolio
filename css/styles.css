@@ -55,7 +55,7 @@ header {
     height: 100px;
 }
 
-header h1 img {
+header div img {
     position: absolute;
     top: 0px;
     opacity: 0;
@@ -70,7 +70,7 @@ header h1 img {
     opacity: 1;
 }
 
-header h2 {
+header h1 {
     position: absolute;
     left: 65px;
     display: inline-block;
