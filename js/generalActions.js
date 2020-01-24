@@ -15,23 +15,15 @@ const mainPortal = document.querySelector('main');
 const aboutPortal = document.querySelector('#about-portal');
 const contactPortal = document.querySelector('#contact-portal');
 const footer = document.querySelector('footer');
-const trainer = document.querySelector('#trainer-img');
-const quadSquad = document.querySelector('#proj2');
-const project1 = document.querySelector('#proj1');
-const project2 = document.querySelector('#travel-buddy');
 const email = document.querySelector('#email');
 const headerLogoArray = Array.from(document.querySelector('header h1').children);
-const headerLogoDev = document.querySelector('#logo-dev');
-const headerLogoFilm = document.querySelector('#logo-film');
-const headerLogoAbout = document.querySelector('#logo-about');
-const headerLogoContact = document.querySelector('#logo-contact');
 const slideShowArray = Array.from(document.querySelector('#slideshow').children);
 const filmVidAll = Array.from(filmPortal.querySelectorAll('video'));
 const filmVidBg = filmPortal.querySelector('#film-video-bg');
 const loading = document.querySelector('.loader-container');
 
 
-// This is here to avoid weird page loading
+// This is here to avoid awkward page loading
 window.onload = function(){
     setTimeout(function(){
         filmPortal.style.transition = "all .5s ease-in-out"
@@ -94,10 +86,6 @@ const shiftContent = (element, transX, transY, position) => {
     }
 };
 
-const modifyHeaderLogo = (wipeClass, target, addClass) => {
-    if(wipeClass) headerLogoArray.forEach(i => i.classList.remove(wipeClass));
-    if(addClass) target.classList.add(addClass);
-};
 
 const portalOpacityAndVid = (portal) => {
     portal === "mainPortal" ? mainPortal.style.opacity = '1' : 
@@ -120,21 +108,15 @@ const portalOpacityAndVid = (portal) => {
             filmVidAll.forEach(vid => vid.pause());
         }, 500)
     }
-    // portal === "aboutPortal" ? aboutPortal.style.opacity = '1' : 
-    // aboutPortal.style.opacity = '0'; 
-    // portal === "contactPortal" ? contactPortal.style.opacity = '1':
-    // contactPortal.style.opacity = '0';
 }
 
 const shiftToFilm = () => {
-    modifyHeaderLogo('logo-visible', headerLogoFilm, 'logo-visible');
     portalOpacityAndVid("filmPortal");
     shiftContent(filmPortal, '0%', '0%', 'absolute');
     shiftContent(mainPortal, '-100%', '0%', 'fixed');
 };
 
 const shiftToDev = (element) => {
-    modifyHeaderLogo('logo-visible', headerLogoDev, 'logo-visible');
     portalOpacityAndVid("mainPortal");
     shiftContent(filmPortal, '100%', '0%', 'fixed');
     shiftContent(mainPortal, '0%', '0%', 'static');
@@ -181,21 +163,6 @@ const handleLinking = (e, hashAdjust) => {
 
 window.addEventListener('hashchange', handleLinking);
 header.addEventListener('click', handleLinking);
-
-// Update hash when scrolling - work in progress
-// window.addEventListener('scroll', function(){
-//     if(this.location.hash != "#film-portal"){ 
-//         if(window.scrollY < 86){
-//             // // linkSectionIndicator(devLink);
-//         }
-//         if(window.scrollY > 400 && window.scrollY < 1000){
-//             // linkSectionIndicator(aboutLink);
-//         }
-//         if(window.scrollY > 1200){
-//             // linkSectionIndicator(contactLink);
-//         }
-//     }
-// })
 
 flyOutMenu.addEventListener('click', function(e){
     if(e.target == devFlyOutLink){
