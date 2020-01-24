@@ -92,15 +92,6 @@ header h1 {
     font-size: 15px;
 }
 
-#git-linkedin {
-    margin-top: 10px;
-    width:100%;
-}
-
-#git-linkedin img {
-    width: 30px;
-}
-
 /* FLYOUT MENU IN PROGRESS */
 
 .flyout-menu {
@@ -260,6 +251,7 @@ header h1 {
     justify-content: center;
     text-align: center;
     max-width: 500px;
+    padding: 1.5em;
 }
 
 #stack img {
@@ -279,8 +271,8 @@ header h1 {
     border: .5px solid black;
 }
 
-#inner-about-portal img {
-    width: 50%;
+#inner-about-portal > p {
+    padding: 1em;
 }
 
 #about-codewars {
@@ -294,11 +286,16 @@ header h1 {
     height: 100%;
     display: flex;
     justify-content: center;
+    flex-direction: column;
 }
 
 #about-social img {
-    width: 70%;
-    padding-top: 1em;
+    opacity: .5;
+    transition: opacity .2s ease-in;
+}
+
+#about-social img:hover {
+    opacity: 1;
 }
 
 #contact-portal {
@@ -414,18 +411,6 @@ footer img {
     padding: 5px;
     width: 50px;   
     height: 50px; 
-}
-
-.footer-img-right {
-    position: absolute;
-    width: 100px;
-    opacity: .8;
-    right: 1%;
-    float: right;
-}
-
-.footer-img-right:hover {
-    opacity: 1;
 }
 
 @media (max-height: 825px) {
