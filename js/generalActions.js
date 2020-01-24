@@ -16,7 +16,6 @@ const aboutPortal = document.querySelector('#about-portal');
 const contactPortal = document.querySelector('#contact-portal');
 const footer = document.querySelector('footer');
 const email = document.querySelector('#email');
-const headerLogoArray = Array.from(document.querySelector('header h1').children);
 const slideShowArray = Array.from(document.querySelector('#slideshow').children);
 const filmVidAll = Array.from(filmPortal.querySelectorAll('video'));
 const filmVidBg = filmPortal.querySelector('#film-video-bg');
