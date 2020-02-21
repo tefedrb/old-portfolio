@@ -617,6 +617,11 @@ footer img {
 }
 
 @media (max-width: 540px){
+
+    header h1 {
+        font-size: 1.75em;
+    }
+
     #film-video-bg {
         display: none;
         transition: all .5s ease-in-out; 
