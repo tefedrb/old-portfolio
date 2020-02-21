@@ -1,9 +1,9 @@
 const header = document.querySelector('header');
 const body = document.querySelector('body');
-const filmLink = document.querySelector('.filmmaking');
-const devLink = document.querySelector('.development');
-const aboutLink = document.querySelector('.about-link');
-const contactLink = document.querySelector('.contact-link');
+const filmLink = document.querySelector('#filmmaking');
+const devLink = document.querySelector('#development');
+const aboutLink = document.querySelector('#about-link');
+const contactLink = document.querySelector('#contact-link');
 const devFlyOutLink = document.querySelector('#development-flyout');
 const filmFlyOutLink = document.querySelector('#filmmaking-flyout');
 const aboutFlyOutLink = document.querySelector('#about-link-flyout');
@@ -20,7 +20,21 @@ const slideShowArray = Array.from(document.querySelector('#slideshow').children)
 const filmVidAll = Array.from(filmPortal.querySelectorAll('video'));
 const filmVidBg = filmPortal.querySelector('#film-video-bg');
 const loading = document.querySelector('.loader-container');
+const hamMenu = document.querySelector('.ham-menu-click');
 
+hamMenu.addEventListener('click', (e) => {
+    const hamChildren = Array.from(hamMenu.children);
+    if(hamChildren[0].classList.contains("testHam0")){
+        hamChildren.forEach((span, idx) => {
+            span.classList.remove(`testHam${idx}`);
+        })
+    } else {
+        hamChildren.forEach((span, idx) => {
+            span.classList.add(`testHam${idx}`);
+        })
+    }
+    console.log(hamChildren);
+});
 
 // This is here to avoid awkward page loading
 window.onload = function(){

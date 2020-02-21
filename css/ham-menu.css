@@ -1,0 +1,39 @@
+.ham-menu-click {
+    display: none;
+    justify-content: center;
+    flex-direction: column;
+    height: 100%;
+    z-index: 10;
+    padding-right: .75em;
+}
+
+.ham-menu-click span {
+    position: relative;
+    display: block;
+    margin: 2px;
+    width: 25px;
+    height: 4px;
+    background-color: black;
+    transition: all .5s ease;
+}
+
+.ham-menu-click span:nth-child(1){
+    transform-origin: left;
+}
+
+.ham-menu-click span:nth-child(3){
+    transform-origin: left;
+}
+
+.testHam0 {
+    transform: rotate(45deg);
+}
+
+.testHam1 {
+    transform: rotate(135deg);
+    right: 3px;
+}
+
+.testHam2 {
+    transform: scaleX(0);
+}
