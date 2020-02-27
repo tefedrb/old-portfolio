@@ -167,7 +167,6 @@ header h1 {
     border: 1px black solid;
 }
 
-/* Flexbox here */
 .project-name {
     text-decoration: underline;
     font-weight: 700;
@@ -186,25 +185,24 @@ header h1 {
     opacity: 0;
     display: flex;
     flex-direction: column;
-    justify-content: space-around;
+    justify-content: center;
     transition: all .6s ease;
 }
 
 .project-description span {
     width: 100%;
-    margin-top: 10%;
     font-size: .8em;
+    padding-bottom: .5em;
     cursor: pointer;
     transition: all .2s ease;
 }
 
-.project-description span:hover {
-    font-size: .85em;
-    margin-top: 9%;
+.project-description img {
+    opacity: .6;
 }
 
 .project-description img:hover {
-    opacity: .6;
+    opacity: 1;
 }
 
 .project-description:hover {

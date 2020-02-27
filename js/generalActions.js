@@ -22,6 +22,10 @@ const filmVidBg = filmPortal.querySelector('#film-video-bg');
 const loading = document.querySelector('.loader-container');
 const hamMenu = document.querySelector('.ham-menu-click');
 
+
+/* Lets get rid of realignWindow & shift content.
+Instead lets use a transition that uses setTimeOut to position 
+ the window accordingly */ 
 hamMenu.addEventListener('click', (e) => {
     const hamChildren = Array.from(hamMenu.children);
     if(hamChildren[0].classList.contains("testHam0")){
@@ -43,30 +47,30 @@ window.onload = function(){
     }, 500)
 }
 
-const realignWindow = (positionY, duration) => {
-    // Thanks to gizma.com/easing formulas and Dev Ed (youtube channel) for inspiring this function
-    if(window.scrollY === positionY) return;
-    const currentScroll = window.scrollY;
-    let distance;  
-    let startTime = null;
-    const ease = (t, b, c, d) =>{
-        return c*t/d + b;
-    }; 
+// const realignWindow = (positionY, duration) => {
+//     // Thanks to gizma.com/easing formulas and Dev Ed (youtube channel) for inspiring this function
+//     if(window.scrollY === positionY) return;
+//     const currentScroll = window.scrollY;
+//     let distance;  
+//     let startTime = null;
+//     const ease = (t, b, c, d) =>{
+//         return c*t/d + b;
+//     }; 
 
-    currentScroll > positionY ? distance = (currentScroll - positionY) * -1:
-    distance = positionY;
+//     currentScroll > positionY ? distance = (currentScroll - positionY) * -1:
+//     distance = positionY;
 
-    const animation = (currentTime) =>{
-        if(startTime === null) startTime = currentTime;
-        const timeElapsed = currentTime - startTime;
-         // To use easeInOutCubic to scroll - using window.scrollTo()
-         const easeInOut = ease(timeElapsed, currentScroll, distance, duration);
-         window.scrollTo(0, easeInOut);
-         //base case - compare timeElapsed to duration
-        if(duration > timeElapsed) requestAnimationFrame(animation);
-    };
-    requestAnimationFrame(animation);
-};
+//     const animation = (currentTime) =>{
+//         if(startTime === null) startTime = currentTime;
+//         const timeElapsed = currentTime - startTime;
+//          // To use easeInOutCubic to scroll - using window.scrollTo()
+//          const easeInOut = ease(timeElapsed, currentScroll, distance, duration);
+//          window.scrollTo(0, easeInOut);
+//          //base case - compare timeElapsed to duration
+//         if(duration > timeElapsed) requestAnimationFrame(animation);
+//     };
+//     requestAnimationFrame(animation);
+// };
 
 
 const linksArray = () => {
@@ -82,16 +86,33 @@ const linksArray = () => {
 };
 
 const shiftContent = (element, transX, transY, position) => {
-    realignWindow(0, 500);
+    // portal === "mainPortal" ? mainPortal.style.opacity = '1' : 
+    // mainPortal.style.opacity = '0';
+    
+    setTimeout(() => {
+        element.style.opacity === "1" ? 
+        element.style.opacity = "0" :
+        element.style.opacity = "0";
+    });
+    console.log(element, element.style.opacity);
+    // realignWindow(0, 500);
+    setTimeout(() => {
+        // Scroll to top of window and then transition
+        window.scrollTo(0, 0);
+    });
+
     setTimeout(function(){
-        let translate = `translateX(${transX})`;
+    let translate = `translateX(${transX})`;
+
     if(transY && transX){
         translate = `translate(${transX}, ${transY})`;
     } else if(transY){
         translate = `translate(0%, ${transY})`;
     }
+
     element.style.transform = translate;
     }, 250)
+
     if(position){
         setTimeout(function(){
             element.style.position = position;
@@ -100,11 +121,9 @@ const shiftContent = (element, transX, transY, position) => {
 };
 
 
-const portalOpacityAndVid = (portal) => {
-    portal === "mainPortal" ? mainPortal.style.opacity = '1' : 
-    mainPortal.style.opacity = '0';
+const toggleVidAutoPlay = (portal) => {
     if(portal == "filmPortal"){
-        filmPortal.style.opacity = '1';
+        // filmPortal.style.opacity = '1';
         setTimeout(function(){
             // Need to make this DRY
             if(filmPortal.querySelector('#film-video-bg')){
@@ -113,7 +132,7 @@ const portalOpacityAndVid = (portal) => {
             }
         }, 500)
     } else {
-        filmPortal.style.opacity = '0';
+        // filmPortal.style.opacity = '0';
         setTimeout(function(){
             if(filmPortal.querySelector('#film-video-bg')){
                 filmPortal.querySelector('#film-video-bg').style.opacity = '0';
@@ -124,13 +143,13 @@ const portalOpacityAndVid = (portal) => {
 }
 
 const shiftToFilm = () => {
-    portalOpacityAndVid("filmPortal");
+    toggleVidAutoPlay("filmPortal");
     shiftContent(filmPortal, '0%', '0%', 'absolute');
     shiftContent(mainPortal, '-100%', '0%', 'fixed');
 };
 
 const shiftToDev = (element) => {
-    portalOpacityAndVid("mainPortal");
+    toggleVidAutoPlay("mainPortal");
     shiftContent(filmPortal, '100%', '0%', 'fixed');
     shiftContent(mainPortal, '0%', '0%', 'static');
     if(element){
@@ -174,7 +193,15 @@ const handleLinking = (e, hashAdjust) => {
     }
 }
 
-window.addEventListener('hashchange', handleLinking);
+/*  
+    Maybe create a window.onload type of function that checks to see if the page
+    was refreshed or was just loaded so that we don't need to see things loading
+    or moving around when we do these things - but that still keeps the hash in
+    consideration? 
+ */
+
+
+
 header.addEventListener('click', handleLinking);
 
 flyOutMenu.addEventListener('click', function(e){
@@ -223,12 +250,20 @@ const removeFilmBgVid = () => {
 
 window.addEventListener('resize', (e) => {
     if(e.target.innerWidth < 565){
-      removeFilmBgVid();
+        removeFilmBgVid();
     }
 })
 
-window.addEventListener("load", (e) => {
-        handleLinking(e); 
+window.addEventListener('load', (e) => {
+        /* 
+           If there is a hash location in url handleLinking 
+           (and don't use opacity ?) else just add listener 
+         */
+        window.addEventListener('hashchange', handleLinking(e));
+        // (() => {
+        //     handleLinking(e)
+        //     console.log("ok?")
+        // })(); 
         checkHash();
         if(window.innerWidth < 565){
             removeFilmBgVid() 
