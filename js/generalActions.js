@@ -38,7 +38,6 @@ hamMenu.addEventListener('click', () => {
             span.classList.add(`testHam${idx}`);
         })
     }
-    console.log(hamChildren);
 });
 
 // This is here to avoid awkward page loading
@@ -154,27 +153,23 @@ const shiftToDev = (element) => {
     shiftContent(mainPortal, '0%', '0%', 'static');
     if(element){
         setTimeout(function(){
-            console.log("SCROLLED...?");
             element.scrollIntoView();
-        }, 300)
+        }, 500)
     }
 }
 
 const shiftToAbout = () => {
-    // Check if on dev - if not switch to dev then scroll
+    // Check if on dev page - if not switch to dev then scroll
     const styles = window.getComputedStyle(mainPortal);
-    // console.log(styles.getPropertyValue("transform"), "<------")
     // We want to check the property value from our transform property to see
     // if we are on the film page or development page
     if(styles.getPropertyValue("transform") != "matrix(1, 0, 0, 1, 0, 0)"){
-        console.log("we are in shiftToAbout");
         shiftToDev(aboutPortal);
     }
 }
 
 const shiftToContact = () => {
     const styles = window.getComputedStyle(mainPortal);
-    // console.log(styles.getPropertyValue("transform"))
     if(styles.getPropertyValue("transform") != "matrix(1, 0, 0, 1, 0, 0)"){    
         shiftToDev(contactPortal);
     }
@@ -182,35 +177,27 @@ const shiftToContact = () => {
 
 const handleLinking = (e, hashAdjust) => {
     e.stopPropagation();
+    // This function is meant to get from dev to film.
+    // aso meant to get from to dev-sub categories
     const target = e.target;
-    if(hashAdjust){
-        this.location.hash = hashAdjust;
-    }
-
-    console.log(e.target)
-    if(target == filmLink || this.location.hash == "#film-portal"){
-        shiftToFilm();
-    }
-    if(target == devLink || this.location.hash == "#dev-portal"){
-        console.log("Dev!")
-
-        shiftToDev();
-    }
-    if(target == aboutLink || this.location.hash == "#about-portal"){
-        console.log("About!")
-       shiftToAbout();
-    }
-    if(target == contactLink || this.location.hash == "#contact-portal"){
-       shiftToContact();
-    }
+    setTimeout(() => {
+        if(hashAdjust){
+            this.location.hash = hashAdjust;
+        }
+        if(target == filmLink || this.location.hash == "#film-portal"){
+            shiftToFilm();
+        }
+        if(target == devLink || this.location.hash == "#dev-portal"){
+            shiftToDev();
+        }
+        if(target == aboutLink || this.location.hash == "#about-portal"){
+            shiftToAbout();
+        }
+        if(target == contactLink || this.location.hash == "#contact-portal"){
+            shiftToContact();
+        }
+    }, 25);
 }
-
-/*  
-    Maybe create a window.onload type of function that checks to see if the page
-    was refreshed or was just loaded so that we don't need to see things loading
-    or moving around when we do these things - but that still keeps the hash in
-    consideration? 
- */
 
 header.addEventListener('click', (e) => handleLinking(e));
 
@@ -270,19 +257,14 @@ window.addEventListener('load', (e) => {
             container.remove();
         },500)
     }, 500)
-        /* 
-           If there is a hash location in url handleLinking 
-           (and don't use opacity ?) else just add listener 
-         */
-        window.addEventListener('hashchange', handleLinking(e));
-        (() => {
-            handleLinking(e)
-            console.log("ok?")
-        })(); 
-        checkHash();
-        if(window.innerWidth < 565){
-            removeFilmBgVid() 
-        }
+    // handleLinking after browser load
+    (() => {
+        handleLinking(e)
+    })(); 
+    checkHash();
+    if(window.innerWidth < 565){
+        removeFilmBgVid() 
+    }
     }
 );
 
