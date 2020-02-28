@@ -22,11 +22,12 @@ const filmVidBg = filmPortal.querySelector('#film-video-bg');
 const loading = document.querySelector('.loader-container');
 const hamMenu = document.querySelector('.ham-menu-click');
 
-
+// WHILE DOMCONTENT IS NOT LOADED HAVE LOADING SCREEN
 /* Lets get rid of realignWindow & shift content.
 Instead lets use a transition that uses setTimeOut to position 
  the window accordingly */ 
-hamMenu.addEventListener('click', (e) => {
+
+hamMenu.addEventListener('click', () => {
     const hamChildren = Array.from(hamMenu.children);
     if(hamChildren[0].classList.contains("testHam0")){
         hamChildren.forEach((span, idx) => {
@@ -72,7 +73,6 @@ window.onload = function(){
 //     requestAnimationFrame(animation);
 // };
 
-
 const linksArray = () => {
     // Get main-nav body and collect child elements
     let mainNavLinks = document.querySelector('#main-nav').children;
@@ -82,19 +82,20 @@ const linksArray = () => {
             returnArr.push(mainNavLinks[i]);
         }
     }
-    return returnArr
-};
+    return returnArr;
+}
 
 const shiftContent = (element, transX, transY, position) => {
     // portal === "mainPortal" ? mainPortal.style.opacity = '1' : 
     // mainPortal.style.opacity = '0';
-    
-    setTimeout(() => {
-        element.style.opacity === "1" ? 
-        element.style.opacity = "0" :
-        element.style.opacity = "0";
-    });
-    console.log(element, element.style.opacity);
+
+    // DOM CONTENT LOADED
+
+    // setTimeout(() => {
+    //     element.style.opacity === "1" ? 
+    //     element.style.opacity = "0" :
+    //     element.style.opacity = "0";
+    // });
     // realignWindow(0, 500);
     setTimeout(() => {
         // Scroll to top of window and then transition
@@ -116,10 +117,9 @@ const shiftContent = (element, transX, transY, position) => {
     if(position){
         setTimeout(function(){
             element.style.position = position;
-        }, 500)
+        }, 500);
     }
-};
-
+}
 
 const toggleVidAutoPlay = (portal) => {
     if(portal == "filmPortal"){
@@ -146,7 +146,7 @@ const shiftToFilm = () => {
     toggleVidAutoPlay("filmPortal");
     shiftContent(filmPortal, '0%', '0%', 'absolute');
     shiftContent(mainPortal, '-100%', '0%', 'fixed');
-};
+}
 
 const shiftToDev = (element) => {
     toggleVidAutoPlay("mainPortal");
@@ -154,41 +154,53 @@ const shiftToDev = (element) => {
     shiftContent(mainPortal, '0%', '0%', 'static');
     if(element){
         setTimeout(function(){
+            console.log("SCROLLED...?");
             element.scrollIntoView();
         }, 300)
     }
-};
+}
 
 const shiftToAbout = () => {
     // Check if on dev - if not switch to dev then scroll
     const styles = window.getComputedStyle(mainPortal);
+    // console.log(styles.getPropertyValue("transform"), "<------")
+    // We want to check the property value from our transform property to see
+    // if we are on the film page or development page
     if(styles.getPropertyValue("transform") != "matrix(1, 0, 0, 1, 0, 0)"){
+        console.log("we are in shiftToAbout");
         shiftToDev(aboutPortal);
     }
 }
 
 const shiftToContact = () => {
     const styles = window.getComputedStyle(mainPortal);
+    // console.log(styles.getPropertyValue("transform"))
     if(styles.getPropertyValue("transform") != "matrix(1, 0, 0, 1, 0, 0)"){    
         shiftToDev(contactPortal);
     }
-};
+}
 
 const handleLinking = (e, hashAdjust) => {
+    e.stopPropagation();
+    const target = e.target;
     if(hashAdjust){
         this.location.hash = hashAdjust;
-        return
     }
-    if(e.target == filmLink || this.location.hash == "#film-portal"){
+
+    console.log(e.target)
+    if(target == filmLink || this.location.hash == "#film-portal"){
         shiftToFilm();
     }
-    if(e.target == devLink || this.location.hash == "#dev-portal"){
+    if(target == devLink || this.location.hash == "#dev-portal"){
+        console.log("Dev!")
+
         shiftToDev();
     }
-    if(e.target == aboutLink || this.location.hash == "#about-portal"){
+    if(target == aboutLink || this.location.hash == "#about-portal"){
+        console.log("About!")
        shiftToAbout();
     }
-    if(e.target == contactLink || this.location.hash == "#contact-portal"){
+    if(target == contactLink || this.location.hash == "#contact-portal"){
        shiftToContact();
     }
 }
@@ -200,9 +212,7 @@ const handleLinking = (e, hashAdjust) => {
     consideration? 
  */
 
-
-
-header.addEventListener('click', handleLinking);
+header.addEventListener('click', (e) => handleLinking(e));
 
 flyOutMenu.addEventListener('click', function(e){
     if(e.target == devFlyOutLink){
@@ -237,8 +247,7 @@ const checkHash = () => {
         if(currentHash == "#contact-portal") {
             contactPortal.scrollIntoView();
         }
-    }, 20)
-    
+    }, 20)  
 }
 
 const removeFilmBgVid = () => {
@@ -255,15 +264,21 @@ window.addEventListener('resize', (e) => {
 })
 
 window.addEventListener('load', (e) => {
+    setTimeout(() => {
+        container.style.opacity = "0";
+        setTimeout(() => {
+            container.remove();
+        },500)
+    }, 500)
         /* 
            If there is a hash location in url handleLinking 
            (and don't use opacity ?) else just add listener 
          */
         window.addEventListener('hashchange', handleLinking(e));
-        // (() => {
-        //     handleLinking(e)
-        //     console.log("ok?")
-        // })(); 
+        (() => {
+            handleLinking(e)
+            console.log("ok?")
+        })(); 
         checkHash();
         if(window.innerWidth < 565){
             removeFilmBgVid() 

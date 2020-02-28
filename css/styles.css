@@ -22,13 +22,39 @@ a {
     transition: border .1s ease-in;
 }
 
+#container {
+    display: none;
+    z-index: 2000;
+    position: fixed;
+    top: 0;
+    left: 0;
+    height: 100vh;
+    width: 100vw;
+    opacity: 1;
+    background-color: white;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    transition: .5s all ease-in;
+}
+
+#spinner {
+    border: 5px solid rgb(235, 235, 235);
+    border-radius: 50%;
+    background-color: white;
+    border-top: 5px solid rgb(100, 255, 0);
+    width: 50px;
+    height: 50px;
+    animation: round 2s linear infinite;
+}
+
 @keyframes round{
     from{transform: rotate(0deg)}
     to{transform: rotate(360deg)}
 }
 
 main {
-    transform: translate(0px, 0px);
+    /* transform: translate(0px, 0px); */
     width: 100%;
     transition: all .5s ease-in-out;
 }
@@ -140,7 +166,7 @@ header h1 {
     height: 100%;
     justify-content: center;
     text-align: center;
-    margin: 140px 140px;   
+    padding: 4em;  
 }
 
 #dev-portal p {
