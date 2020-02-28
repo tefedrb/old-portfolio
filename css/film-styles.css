@@ -2,19 +2,16 @@
 #film-portal-wrap {
     position: fixed;
     transform: translate(100%, 0%);
-    /* opacity: 0; */
     top: 0;
     right: 0;
     left: 0;
     width: 100%;
     height: auto;
-    padding-left: 20px;
-    padding-right: 20px;
-    padding-bottom: 4%;
-    padding-top: 4%;
+    padding: 4% 20px;
     display: flex;
     justify-content: center;
     margin: 0 auto; 
+    transition: all .5s ease-in-out;
 }
 
 #film-video-bg {

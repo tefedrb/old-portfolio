@@ -22,11 +22,6 @@ const filmVidBg = filmPortal.querySelector('#film-video-bg');
 const loading = document.querySelector('.loader-container');
 const hamMenu = document.querySelector('.ham-menu-click');
 
-// WHILE DOMCONTENT IS NOT LOADED HAVE LOADING SCREEN
-/* Lets get rid of realignWindow & shift content.
-Instead lets use a transition that uses setTimeOut to position 
- the window accordingly */ 
-
 hamMenu.addEventListener('click', () => {
     const hamChildren = Array.from(hamMenu.children);
     if(hamChildren[0].classList.contains("testHam0")){
@@ -39,38 +34,6 @@ hamMenu.addEventListener('click', () => {
         })
     }
 });
-
-// This is here to avoid awkward page loading
-window.onload = function(){
-    setTimeout(function(){
-        filmPortal.style.transition = "all .5s ease-in-out"
-    }, 500)
-}
-
-// const realignWindow = (positionY, duration) => {
-//     // Thanks to gizma.com/easing formulas and Dev Ed (youtube channel) for inspiring this function
-//     if(window.scrollY === positionY) return;
-//     const currentScroll = window.scrollY;
-//     let distance;  
-//     let startTime = null;
-//     const ease = (t, b, c, d) =>{
-//         return c*t/d + b;
-//     }; 
-
-//     currentScroll > positionY ? distance = (currentScroll - positionY) * -1:
-//     distance = positionY;
-
-//     const animation = (currentTime) =>{
-//         if(startTime === null) startTime = currentTime;
-//         const timeElapsed = currentTime - startTime;
-//          // To use easeInOutCubic to scroll - using window.scrollTo()
-//          const easeInOut = ease(timeElapsed, currentScroll, distance, duration);
-//          window.scrollTo(0, easeInOut);
-//          //base case - compare timeElapsed to duration
-//         if(duration > timeElapsed) requestAnimationFrame(animation);
-//     };
-//     requestAnimationFrame(animation);
-// };
 
 const linksArray = () => {
     // Get main-nav body and collect child elements
@@ -85,17 +48,6 @@ const linksArray = () => {
 }
 
 const shiftContent = (element, transX, transY, position) => {
-    // portal === "mainPortal" ? mainPortal.style.opacity = '1' : 
-    // mainPortal.style.opacity = '0';
-
-    // DOM CONTENT LOADED
-
-    // setTimeout(() => {
-    //     element.style.opacity === "1" ? 
-    //     element.style.opacity = "0" :
-    //     element.style.opacity = "0";
-    // });
-    // realignWindow(0, 500);
     setTimeout(() => {
         // Scroll to top of window and then transition
         window.scrollTo(0, 0);
