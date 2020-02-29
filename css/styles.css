@@ -22,13 +22,39 @@ a {
     transition: border .1s ease-in;
 }
 
+#container {
+    display: none;
+    z-index: 2000;
+    position: fixed;
+    top: 0;
+    left: 0;
+    height: 100vh;
+    width: 100vw;
+    opacity: 1;
+    background-color: white;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    transition: .5s all ease-in;
+}
+
+#spinner {
+    border: 5px solid rgb(235, 235, 235);
+    border-radius: 50%;
+    background-color: white;
+    border-top: 5px solid rgb(100, 255, 0);
+    width: 50px;
+    height: 50px;
+    animation: round 2s linear infinite;
+}
+
 @keyframes round{
     from{transform: rotate(0deg)}
     to{transform: rotate(360deg)}
 }
 
 main {
-    transform: translate(0px, 0px);
+    /* transform: translate(0px, 0px); */
     width: 100%;
     transition: all .5s ease-in-out;
 }
@@ -140,7 +166,7 @@ header h1 {
     height: 100%;
     justify-content: center;
     text-align: center;
-    margin: 140px 140px;   
+    padding: 4em;  
 }
 
 #dev-portal p {
@@ -167,7 +193,6 @@ header h1 {
     border: 1px black solid;
 }
 
-/* Flexbox here */
 .project-name {
     text-decoration: underline;
     font-weight: 700;
@@ -186,25 +211,24 @@ header h1 {
     opacity: 0;
     display: flex;
     flex-direction: column;
-    justify-content: space-around;
+    justify-content: center;
     transition: all .6s ease;
 }
 
 .project-description span {
     width: 100%;
-    margin-top: 10%;
     font-size: .8em;
+    padding-bottom: .5em;
     cursor: pointer;
     transition: all .2s ease;
 }
 
-.project-description span:hover {
-    font-size: .85em;
-    margin-top: 9%;
+.project-description img {
+    opacity: .6;
 }
 
 .project-description img:hover {
-    opacity: .6;
+    opacity: 1;
 }
 
 .project-description:hover {
@@ -489,7 +513,7 @@ footer img {
         height: auto;
     }
 
-    #outer-arrows {
+    #slides-navigation {
         display: none;
     }
 
@@ -540,7 +564,7 @@ footer img {
     }
 
     #dev-portal {
-        margin: 30% auto;
+        padding: 30% auto;
     }
 
     #stack {
@@ -601,11 +625,6 @@ footer img {
     }
 
     .ham-menu-click {
-        /* position: absolute;
-        overflow: hidden;
-        display: inline-block; */
-        /* top: 14px;
-        right: 20px; */
         display: flex;
         z-index: 100;
     }   

@@ -21,53 +21,7 @@ const filmVidAll = Array.from(filmPortal.querySelectorAll('video'));
 const filmVidBg = filmPortal.querySelector('#film-video-bg');
 const loading = document.querySelector('.loader-container');
 const hamMenu = document.querySelector('.ham-menu-click');
-
-hamMenu.addEventListener('click', (e) => {
-    const hamChildren = Array.from(hamMenu.children);
-    if(hamChildren[0].classList.contains("testHam0")){
-        hamChildren.forEach((span, idx) => {
-            span.classList.remove(`testHam${idx}`);
-        })
-    } else {
-        hamChildren.forEach((span, idx) => {
-            span.classList.add(`testHam${idx}`);
-        })
-    }
-    console.log(hamChildren);
-});
-
-// This is here to avoid awkward page loading
-window.onload = function(){
-    setTimeout(function(){
-        filmPortal.style.transition = "all .5s ease-in-out"
-    }, 500)
-}
-
-const realignWindow = (positionY, duration) => {
-    // Thanks to gizma.com/easing formulas and Dev Ed (youtube channel) for inspiring this function
-    if(window.scrollY === positionY) return;
-    const currentScroll = window.scrollY;
-    let distance;  
-    let startTime = null;
-    const ease = (t, b, c, d) =>{
-        return c*t/d + b;
-    }; 
-
-    currentScroll > positionY ? distance = (currentScroll - positionY) * -1:
-    distance = positionY;
-
-    const animation = (currentTime) =>{
-        if(startTime === null) startTime = currentTime;
-        const timeElapsed = currentTime - startTime;
-         // To use easeInOutCubic to scroll - using window.scrollTo()
-         const easeInOut = ease(timeElapsed, currentScroll, distance, duration);
-         window.scrollTo(0, easeInOut);
-         //base case - compare timeElapsed to duration
-        if(duration > timeElapsed) requestAnimationFrame(animation);
-    };
-    requestAnimationFrame(animation);
-};
-
+const hamChildren = Array.from(hamMenu.children);
 
 const linksArray = () => {
     // Get main-nav body and collect child elements
@@ -78,33 +32,37 @@ const linksArray = () => {
             returnArr.push(mainNavLinks[i]);
         }
     }
-    return returnArr
-};
+    return returnArr;
+}
 
 const shiftContent = (element, transX, transY, position) => {
-    realignWindow(0, 500);
+    setTimeout(() => {
+        // Scroll to top of window and then transition
+        window.scrollTo(0, 0);
+    });
+
     setTimeout(function(){
-        let translate = `translateX(${transX})`;
+    let translate = `translateX(${transX})`;
+
     if(transY && transX){
         translate = `translate(${transX}, ${transY})`;
     } else if(transY){
         translate = `translate(0%, ${transY})`;
     }
+
     element.style.transform = translate;
     }, 250)
+
     if(position){
         setTimeout(function(){
             element.style.position = position;
-        }, 500)
+        }, 500);
     }
-};
+}
 
-
-const portalOpacityAndVid = (portal) => {
-    portal === "mainPortal" ? mainPortal.style.opacity = '1' : 
-    mainPortal.style.opacity = '0';
+const toggleVidAutoPlay = (portal) => {
     if(portal == "filmPortal"){
-        filmPortal.style.opacity = '1';
+        // filmPortal.style.opacity = '1';
         setTimeout(function(){
             // Need to make this DRY
             if(filmPortal.querySelector('#film-video-bg')){
@@ -113,7 +71,7 @@ const portalOpacityAndVid = (portal) => {
             }
         }, 500)
     } else {
-        filmPortal.style.opacity = '0';
+        // filmPortal.style.opacity = '0';
         setTimeout(function(){
             if(filmPortal.querySelector('#film-video-bg')){
                 filmPortal.querySelector('#film-video-bg').style.opacity = '0';
@@ -124,25 +82,27 @@ const portalOpacityAndVid = (portal) => {
 }
 
 const shiftToFilm = () => {
-    portalOpacityAndVid("filmPortal");
+    toggleVidAutoPlay("filmPortal");
     shiftContent(filmPortal, '0%', '0%', 'absolute');
     shiftContent(mainPortal, '-100%', '0%', 'fixed');
-};
+}
 
 const shiftToDev = (element) => {
-    portalOpacityAndVid("mainPortal");
+    toggleVidAutoPlay("mainPortal");
     shiftContent(filmPortal, '100%', '0%', 'fixed');
     shiftContent(mainPortal, '0%', '0%', 'static');
     if(element){
         setTimeout(function(){
             element.scrollIntoView();
-        }, 300)
+        }, 500)
     }
-};
+}
 
 const shiftToAbout = () => {
-    // Check if on dev - if not switch to dev then scroll
+    // Check if on dev page - if not switch to dev then scroll
     const styles = window.getComputedStyle(mainPortal);
+    // We want to check the property value from our transform property to see
+    // if we are on the film page or development page
     if(styles.getPropertyValue("transform") != "matrix(1, 0, 0, 1, 0, 0)"){
         shiftToDev(aboutPortal);
     }
@@ -153,45 +113,75 @@ const shiftToContact = () => {
     if(styles.getPropertyValue("transform") != "matrix(1, 0, 0, 1, 0, 0)"){    
         shiftToDev(contactPortal);
     }
-};
-
-const handleLinking = (e, hashAdjust) => {
-    if(hashAdjust){
-        this.location.hash = hashAdjust;
-        return
-    }
-    if(e.target == filmLink || this.location.hash == "#film-portal"){
-        shiftToFilm();
-    }
-    if(e.target == devLink || this.location.hash == "#dev-portal"){
-        shiftToDev();
-    }
-    if(e.target == aboutLink || this.location.hash == "#about-portal"){
-       shiftToAbout();
-    }
-    if(e.target == contactLink || this.location.hash == "#contact-portal"){
-       shiftToContact();
-    }
 }
 
-window.addEventListener('hashchange', handleLinking);
-header.addEventListener('click', handleLinking);
+const handleLinking = (e, hashAdjust) => {
+    e.stopPropagation();
+    // This function is meant to get from dev to film.
+    // aso meant to get from to dev-sub categories
+    const target = e.target;
+    setTimeout(() => {
+        if(hashAdjust){
+            this.location.hash = hashAdjust;
+        }
+        if(target == filmLink || this.location.hash == "#film-portal"){
+            shiftToFilm();
+        }
+        if(target == devLink || this.location.hash == "#dev-portal"){
+            shiftToDev();
+        }
+        if(target == aboutLink || this.location.hash == "#about-portal"){
+            shiftToAbout();
+        }
+        if(target == contactLink || this.location.hash == "#contact-portal"){
+            shiftToContact();
+        }
+    }, 25);
+}
+
+header.addEventListener('click', (e) => handleLinking(e));
+
+const adjustHamMenu = (option) => {
+    if(option === "closed"){
+        hamChildren.forEach((span, idx) => {
+            span.classList.remove(`testHam${idx}`);
+        })
+    } else if(option === "open"){
+        hamChildren.forEach((span, idx) => {
+            span.classList.add(`testHam${idx}`);
+        }) 
+    } else {
+        throw console.error("Need to specifiy an option for function"); 
+    }
+}
+// Hamburger menu actions
+hamMenu.addEventListener('click', () => {
+    if(hamChildren[0].classList.contains("testHam0")){
+       adjustHamMenu("closed");
+    } else {
+       adjustHamMenu("open");
+    }
+});
 
 flyOutMenu.addEventListener('click', function(e){
     if(e.target == devFlyOutLink){
         shiftToDev();
+        adjustHamMenu("closed");
         $('.flyout-menu').toggleClass('flyout-menu-out');
     }
     if(e.target == filmFlyOutLink){
         shiftToFilm();
+        adjustHamMenu("closed");
         $('.flyout-menu').toggleClass('flyout-menu-out');
     }
     if(e.target == aboutFlyOutLink){
         shiftToAbout();
+        adjustHamMenu("closed");
         $('.flyout-menu').toggleClass('flyout-menu-out');
     }
     if(e.target == contactFlyOutLink){
         shiftToContact();
+        adjustHamMenu("closed");
         $('.flyout-menu').toggleClass('flyout-menu-out');
     }
 })
@@ -210,8 +200,7 @@ const checkHash = () => {
         if(currentHash == "#contact-portal") {
             contactPortal.scrollIntoView();
         }
-    }, 20)
-    
+    }, 20)  
 }
 
 const removeFilmBgVid = () => {
@@ -223,12 +212,21 @@ const removeFilmBgVid = () => {
 
 window.addEventListener('resize', (e) => {
     if(e.target.innerWidth < 565){
-      removeFilmBgVid();
+        removeFilmBgVid();
     }
 })
 
-window.addEventListener("load", (e) => {
-        handleLinking(e); 
+window.addEventListener('load', (e) => {
+        setTimeout(() => {
+            container.style.opacity = "0";
+            setTimeout(() => {
+                container.remove();
+            }, 500);
+        }, 500);
+        // handleLinking after browser load
+        (() => {
+            handleLinking(e);
+        })(); 
         checkHash();
         if(window.innerWidth < 565){
             removeFilmBgVid() 

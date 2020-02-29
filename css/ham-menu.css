@@ -14,7 +14,7 @@
     width: 25px;
     height: 4px;
     background-color: black;
-    transition: all .5s ease;
+    transition: all .3s ease;
 }
 
 .ham-menu-click span:nth-child(1){
