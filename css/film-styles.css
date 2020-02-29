@@ -26,6 +26,7 @@
 }
 
 #film-portal {
+    overflow-x: auto;
     max-width: 1255px;
     margin-top: 1.2em;
     padding-left: 1.55%;
@@ -99,7 +100,7 @@
     margin-bottom: 45px;
 }
 
-#outer-arrows {
+#slides-navigation {
     position: absolute;
     z-index: 2;
     opacity: 0;
@@ -109,7 +110,7 @@
     left: 0;
 }
 
-#outer-arrows:hover {
+#slides-navigation:hover {
     opacity: 1;
 }
 
@@ -135,7 +136,7 @@
 } 
 
 /* Show arrows when users mouse is over slideshow */
- #slideshow:hover ~ #outer-arrows {
+ #slideshow:hover ~ #slides-navigation {
     opacity: 1;
 } 
 
@@ -271,10 +272,7 @@
 }
 
 #slideCountContainer {
-    position: absolute;
     text-align: center;
-    top: 86%;
-    left: 32%;
     width: 440px;
     height: 20px;
 }

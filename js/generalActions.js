@@ -163,7 +163,6 @@ hamMenu.addEventListener('click', () => {
     }
 });
 
-
 flyOutMenu.addEventListener('click', function(e){
     if(e.target == devFlyOutLink){
         shiftToDev();

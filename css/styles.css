@@ -513,7 +513,7 @@ footer img {
         height: auto;
     }
 
-    #outer-arrows {
+    #slides-navigation {
         display: none;
     }
 
@@ -564,7 +564,7 @@ footer img {
     }
 
     #dev-portal {
-        margin: 30% auto;
+        padding: 30% auto;
     }
 
     #stack {
