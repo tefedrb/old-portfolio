@@ -21,19 +21,7 @@ const filmVidAll = Array.from(filmPortal.querySelectorAll('video'));
 const filmVidBg = filmPortal.querySelector('#film-video-bg');
 const loading = document.querySelector('.loader-container');
 const hamMenu = document.querySelector('.ham-menu-click');
-
-hamMenu.addEventListener('click', () => {
-    const hamChildren = Array.from(hamMenu.children);
-    if(hamChildren[0].classList.contains("testHam0")){
-        hamChildren.forEach((span, idx) => {
-            span.classList.remove(`testHam${idx}`);
-        })
-    } else {
-        hamChildren.forEach((span, idx) => {
-            span.classList.add(`testHam${idx}`);
-        })
-    }
-});
+const hamChildren = Array.from(hamMenu.children);
 
 const linksArray = () => {
     // Get main-nav body and collect child elements
@@ -153,21 +141,48 @@ const handleLinking = (e, hashAdjust) => {
 
 header.addEventListener('click', (e) => handleLinking(e));
 
+const adjustHamMenu = (option) => {
+    if(option === "closed"){
+        hamChildren.forEach((span, idx) => {
+            span.classList.remove(`testHam${idx}`);
+        })
+    } else if(option === "open"){
+        hamChildren.forEach((span, idx) => {
+            span.classList.add(`testHam${idx}`);
+        }) 
+    } else {
+        throw console.error("Need to specifiy an option for function"); 
+    }
+}
+// Hamburger menu actions
+hamMenu.addEventListener('click', () => {
+    if(hamChildren[0].classList.contains("testHam0")){
+       adjustHamMenu("closed");
+    } else {
+       adjustHamMenu("open");
+    }
+});
+
+
 flyOutMenu.addEventListener('click', function(e){
     if(e.target == devFlyOutLink){
         shiftToDev();
+        adjustHamMenu("closed");
         $('.flyout-menu').toggleClass('flyout-menu-out');
     }
     if(e.target == filmFlyOutLink){
         shiftToFilm();
+        adjustHamMenu("closed");
         $('.flyout-menu').toggleClass('flyout-menu-out');
     }
     if(e.target == aboutFlyOutLink){
         shiftToAbout();
+        adjustHamMenu("closed");
         $('.flyout-menu').toggleClass('flyout-menu-out');
     }
     if(e.target == contactFlyOutLink){
         shiftToContact();
+        adjustHamMenu("closed");
         $('.flyout-menu').toggleClass('flyout-menu-out');
     }
 })
@@ -203,20 +218,20 @@ window.addEventListener('resize', (e) => {
 })
 
 window.addEventListener('load', (e) => {
-    setTimeout(() => {
-        container.style.opacity = "0";
         setTimeout(() => {
-            container.remove();
-        },500)
-    }, 500)
-    // handleLinking after browser load
-    (() => {
-        handleLinking(e)
-    })(); 
-    checkHash();
-    if(window.innerWidth < 565){
-        removeFilmBgVid() 
-    }
+            container.style.opacity = "0";
+            setTimeout(() => {
+                container.remove();
+            }, 500);
+        }, 500);
+        // handleLinking after browser load
+        (() => {
+            handleLinking(e);
+        })(); 
+        checkHash();
+        if(window.innerWidth < 565){
+            removeFilmBgVid() 
+        }
     }
 );
 
