@@ -203,16 +203,34 @@ const checkHash = () => {
     }, 20)  
 }
 
-const removeFilmBgVid = () => {
+const toggleFilmBgVid = (option) => {
     const videoBg = document.querySelector('#film-video-bg');
-    if(!videoBg) return;
-    videoBg.parentNode.removeChild(videoBg);
-    filmPortal.style.backgroundColor = 'black';
+    if(option == "add") {
+        const videoFrag = document.createDocumentFragment();
+        const videoBg = document.createElement('video');
+        const source = document.createElement('source');
+        source.setAttribute("src", "video/Burn_1.mp4");
+        source.setAttribute("type", "video/mp4");
+        videoBg.setAttribute("autoplay", "");
+        videoBg.setAttribute("muted", "");
+        videoBg.setAttribute("loop", "");
+        videoBg.setAttribute("autoplay", "");
+        videoBg.id = "film-video-bg";
+        videoBg.appendChild(source);
+        videoFrag.appendChild(videoBg);
+        document.querySelector("#film-portal-wrap").appendChild(videoFrag);
+        videoBg.style.opacity = "1";
+    } else if(option == "remove"){
+        videoBg.parentNode.removeChild(videoBg);
+        filmPortal.style.backgroundColor = 'black';
+    }
 }
 
 window.addEventListener('resize', (e) => {
-    if(e.target.innerWidth < 565){
-        removeFilmBgVid();
+    if(e.target.innerWidth < 565 && document.querySelector('#film-video-bg')){
+        toggleFilmBgVid("remove");
+    } else if(e.target.innerWidth > 565 && !document.querySelector('#film-video-bg')){
+        toggleFilmBgVid("add");
     }
 })
 
@@ -229,7 +247,7 @@ window.addEventListener('load', (e) => {
         })(); 
         checkHash();
         if(window.innerWidth < 565){
-            removeFilmBgVid() 
+            toggleFilmBgVid() 
         }
     }
 );

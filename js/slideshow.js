@@ -33,7 +33,6 @@ const slideShowInfo = {
     }
 }
 
-
 $('a.arrow-back').addClass('displayOff')
 slideShowInfo.slideshow.style.width = `${slideShowInfo.slideShowWidth()}px`;
 
@@ -78,7 +77,6 @@ const findSlideShowNum = (numOfSlides) => {
     return output;
 };
 
-
 const displaySlideCount = () => {
     const slideCountWidth = parseInt(window.getComputedStyle(slideBarContainer).width);
     const slideShow = slideShowInfo;
@@ -94,7 +92,6 @@ const displaySlideCount = () => {
         $('a.arrow-back').addClass('displayOff');
     }
 }
-
 
 const nextSlideR = function() { 
     if(slideProgressPercent.innerHTML === '100%') return; 
@@ -152,8 +149,6 @@ const modifyClassList = (htmlCollection, thisClass, add) => {
     add ? toArr.forEach(i => i.classList.add(thisClass)) :
     toArr.forEach(i => i.classList.remove(thisClass));
 }
-
-
 
 const switchVideoGroup = (element, setSlideShow) => {
     modifyClassList(editingPortfolioLinks, 'video-category-selected');

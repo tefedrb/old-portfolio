@@ -313,8 +313,8 @@
 
 #close-lightbox {
     position: absolute;
-    top: 25px;
-    left: 25px;
+    top: 2em;
+    right: 3.5em;
 }
 
 #close-lightbox:hover img {
