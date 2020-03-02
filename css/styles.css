@@ -602,8 +602,6 @@ footer img {
 
     #film-portal-wrap {
         top: 5%;
-        width: 100vw;
-        height: 100vh;
     }
 
     #editor-profile-links a {
@@ -647,7 +645,5 @@ footer img {
 
     #film-portal-wrap {
         background-color: black;
-        width: 100vw;
-        height: 100vh;
     }
 }
