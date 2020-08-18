@@ -11,7 +11,7 @@ const blink = () => {
 };
 
 const ttyl = () => {
-    let text = `UNDER CONSTRUCTION... type findPage() into the console to see the progress`
+    let text = `UNDER CONSTRUCTION...`
     let i = 0;
     const runme = () => {  
         document.querySelector('.text').innerHTML += text[i]
@@ -26,7 +26,7 @@ const ttyl = () => {
     return newFunc
 };
 
-const decrypt = (str) => {  
+const decode = (str) => {  
     let hold = str.split('').reverse().splice(4).reverse().join('')
     let output = ''.concat('lmth.', hold)
     return output.split('').reverse().join('')
@@ -34,7 +34,7 @@ const decrypt = (str) => {
 
 
 const findPage = () => {
-    window.location.replace(decrypt('xxednikced'))
+    window.location.replace(decode('xxednikced'))
 };
 
 const ttylGo = ttyl();
