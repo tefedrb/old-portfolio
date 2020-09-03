@@ -53,44 +53,27 @@ hamMenu.addEventListener('click', () => {
 });
 
 flyOutMenu.addEventListener('click', function(e){
-    if(e.target == devFlyOutLink){
-        shiftToDev();
+    const targets = [ devFlyOutLink, aboutFlyOutLink, contactFlyOutLink ];
+    console.log(e.target, "etarget")
+    if(targets.includes(e.target)){
         adjustHamMenu("closed");
-        $('.flyout-menu').toggleClass('flyout-menu-out');
-    }
-    if(e.target == filmFlyOutLink){
-        shiftToFilm();
-        adjustHamMenu("closed");
-        $('.flyout-menu').toggleClass('flyout-menu-out');
-    }
-    if(e.target == aboutFlyOutLink){
-        shiftToAbout();
-        adjustHamMenu("closed");
-        $('.flyout-menu').toggleClass('flyout-menu-out');
-    }
-    if(e.target == contactFlyOutLink){
-        shiftToContact();
-        adjustHamMenu("closed");
-        $('.flyout-menu').toggleClass('flyout-menu-out');
+        const flyOutMenuClassList = Array.from(flyOutMenu.classList);
+        if(flyOutMenuClassList.includes('flyout-menu-out')){
+            flyOutMenu.classList.remove('flyout-menu-out');
+        } else {
+            flyOutMenu.classList.add('flyout-menu-out');
+        }        
     }
 })
 
-// const hamMenu = document.querySelector('.ham-menu-click');
-
-// hamMenu.on('click', function (e){
-//     e.preventDefault();
-//     $('.flyout-menu').toggleClass('flyout-menu-out');
-// });
-
 hamMenu.addEventListener("click", (e) => {
     e.preventDefault();
-    const flyOut = document.querySelector('.flyout-menu');
-    // console.log(flyOut.classList, "elements")
-    const classList = flyOut.classList;
-    if(classList.includes("flyout-menu")){
-        flyOut.classList.remove("flyout-menu-out");
+    const classList = Array.from(flyOutMenu.classList);
+    console.log(classList.includes("flyout-menu"), "here")
+    if(classList.includes("flyout-menu-out")){
+        flyOutMenu.classList.remove("flyout-menu-out");
     } else {
-        flyOut.classList.add("flyout-menu-out");
+        flyOutMenu.classList.add("flyout-menu-out");
     }
 });
 
@@ -105,37 +88,6 @@ const checkHash = () => {
         }
     }, 20)  
 }
-
-const toggleFilmBgVid = (option) => {
-    const videoBg = document.querySelector('#film-video-bg');
-    if(option == "add") {
-        const videoFrag = document.createDocumentFragment();
-        const videoBg = document.createElement('video');
-        const source = document.createElement('source');
-        source.setAttribute("src", "video/Burn_1.mp4");
-        source.setAttribute("type", "video/mp4");
-        videoBg.setAttribute("autoplay", "");
-        videoBg.setAttribute("muted", "");
-        videoBg.setAttribute("loop", "");
-        videoBg.setAttribute("autoplay", "");
-        videoBg.id = "film-video-bg";
-        videoBg.appendChild(source);
-        videoFrag.appendChild(videoBg);
-        document.querySelector("#film-portal-wrap").appendChild(videoFrag);
-        videoBg.style.opacity = "1";
-    } else if(option == "remove"){
-        videoBg.parentNode.removeChild(videoBg);
-        filmPortal.style.backgroundColor = 'black';
-    }
-}
-
-window.addEventListener('resize', (e) => {
-    if(e.target.innerWidth < 565 && document.querySelector('#film-video-bg')){
-        toggleFilmBgVid("remove");
-    } else if(e.target.innerWidth > 565 && !document.querySelector('#film-video-bg')){
-        toggleFilmBgVid("add");
-    }
-})
 
 window.addEventListener('load', (e) => {
         setTimeout(() => {
